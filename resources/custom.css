@@ -5,8 +5,8 @@
     background-color:#151933;
     background-image:url('logo/swap_logo_white.png');
     background-repeat:no-repeat;
-    background-size:500px;
-    background-position:8% 15%;
+    background-size:auto 300px;
+    background-position:center 5%;
     position:fixed !important;
     position:absolute;
     top:0;
