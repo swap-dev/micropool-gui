@@ -1,0 +1,19 @@
+{
+  "name": "swap-micro-pool",
+  "version": "1.0.0",
+  "description": "A minimal Swap Pool",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/swap-dev/micropool-gui",
+  "author": "sebseb7",
+  "license": "0bsd",
+  "devDependencies": {
+    "electron-packager": "^13.1.0"
+  },
+  "dependencies": {
+    "electron": "^4.0.6",
+    "electron-json-storage": "^4.1.6"
+  }
+}
