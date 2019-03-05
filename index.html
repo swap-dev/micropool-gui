@@ -102,7 +102,7 @@
 							<tr>
 								<td>gps</td>
 								<td>
-									<input diasbled="true" id="data_gps" style="width:calc(100% - 12px);background-color:#333333" type="text"/>
+									<input disabled="true" id="data_gps" style="width:calc(100% - 12px);background-color:#333333" type="text"/>
 								</td>
 							</tr>
 						</table>
@@ -203,8 +203,8 @@
 			</div>
 		</div>
 		<script>
-			require('./renderer.js');
 			var electron = require('electron');
+			var loglines = [];
 
 			function updateData() { 
 			
@@ -228,7 +228,14 @@
 			
 			ipcRenderer.on('get-reply', (event, arg) => {
 				document.getElementById(arg[0]).value=arg[1];
-            })
+			})
+
+			ipcRenderer.on('log', (event, msg) => {
+				var d = new Date();
+				loglines.unshift(d.toISOString()+' <span>['+msg[0]+']</span> '+msg[1]);
+				if (loglines.length > 100) loglines.pop();
+				document.getElementById('log').innerHTML=loglines.join('<br/>');
+			});
 
 		</script>
 	</body>

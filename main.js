@@ -151,9 +151,9 @@ function updateJob(reason,callback){
 			current_height=result.height;
 
 			logger.info('New block to mine at height '+result.height+' w/ difficulty of '+result.difficulty+' (triggered by: '+reason+')');
-     
-	 		mainWindow.webContents.send('get-reply', ['data_diff',result.difficulty]);
-	 		mainWindow.webContents.send('get-reply', ['data_height',result.height]);
+
+			mainWindow.webContents.send('get-reply', ['data_diff',result.difficulty]);
+			mainWindow.webContents.send('get-reply', ['data_height',result.height]);
 		
 			for (var minerId in connectedMiners){
 				var miner = connectedMiners[minerId];
@@ -192,7 +192,7 @@ function Miner(id,socket){
 	
 	socket.on('close', function(had_error) {
 		logger.info('miner connction dropped '+client.login);
-	 	mainWindow.webContents.send('get-reply', ['data_conn',--conn]);
+		mainWindow.webContents.send('get-reply', ['data_conn',--conn]);
 		delete connectedMiners[client.id];
 		socket.end();
 	});
@@ -294,7 +294,7 @@ function handleClient(data,miner){
 		}
 		
 		if(check_diff(miner.difficulty,cycle)) {
-	 		
+		
 			shares+=parseFloat(miner.difficulty);
 			mainWindow.webContents.send('get-reply', ['data_shares',shares]);
 				
@@ -339,7 +339,7 @@ function createWindow () {
 		height: 600,
 		minWidth: 800,
 		minHeight: 310,
-		icon: __dirname + '/logo.png'
+		icon: __dirname + '/build/icon_small.png'
 	})
 
 	mainWindow.setMenu(null);
