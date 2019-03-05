@@ -10,10 +10,9 @@
   "author": "sebseb7",
   "license": "0bsd",
   "devDependencies": {
-    "electron-packager": "^13.1.0"
+    "electron": "^4.0.6"
   },
   "dependencies": {
-    "electron": "^4.0.6",
     "electron-json-storage": "^4.1.6"
   }
 }
