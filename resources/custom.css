@@ -1,0 +1,51 @@
+#body {
+    margin:0;
+    padding-left:20px;
+    padding-right:20px;
+    background-color:#151933;
+    background-image:url('logo/swap_logo_white.png');
+    background-repeat:no-repeat;
+    background-size:500px;
+    background-position:8% 15%;
+    position:fixed !important;
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+}
+p {
+    font-family:Verdana, Geneva, sans-serif;
+}
+div {
+    font-family:Verdana, Geneva, sans-serif;
+    font-size:13px;
+    color:white;
+    background-color:#111111;
+}
+div#log {
+    font-family:"Courier New", Courier, monospace;
+    color:#0ed12d;
+    background-color:#111111;
+}
+input {
+    font-family:"Courier New", Courier, monospace;
+    border:1px solid #333;
+    font-size:12px;
+    padding:5px;
+    color:#0ed12d;
+    background-color:#111111;
+}
+span {
+    color:yellow;
+}
+:not(input):not(textarea),
+:not(input):not(textarea)::after,
+:not(input):not(textarea)::before {
+    -webkit-user-select:none;
+    user-select:none;
+    cursor:default;
+}
+input, button, textarea, :focus {
+    outline:none; 
+}
