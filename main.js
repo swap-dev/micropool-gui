@@ -261,7 +261,7 @@ function handleClient(data,miner){
 	
 	if(request && request.method && request.method == "submit") {
 
-		if(!request.params || !request.params.job_id || !request.params.pow || !request.params.nonce || request.params.pow.length != 32) {
+		if(!request.params || !request.params.pow || !request.params.nonce || request.params.pow.length != 32) {
 
 			logger.info('bad data ('+miner.login+')');
 			return miner.respose(null,{code: -32502, message: "wrong hash"},request);
