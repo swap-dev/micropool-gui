@@ -153,6 +153,9 @@ function updateJob(reason,callback){
 			current_height=result.height;
 			current_version= parseInt(current_hashblob.substring(0,2),16);
 			jobcounter=0;
+			if( current_version >= 11) {
+				current_hashblob = current_hashblob.slice(0,-16);	
+			}
 
 			logger.info('New block v'+current_version+' to mine at height '+result.height+' w/ difficulty of '+result.difficulty+' (triggered by: '+reason+')');
 
@@ -162,7 +165,7 @@ function updateJob(reason,callback){
 			for (var minerId in connectedMiners){
 				var miner = connectedMiners[minerId];
 				miner.nonces = [];
-				var response2 = '{"id":"Stratum","jsonrpc":"2.0","method":"getjobtemplate","result":{"difficulty":'+miner.difficulty+',"height":'+current_height+',"job_id":'+seq()+',"pre_pow":"'+current_hashblob+miner.nextnonce()+'"},"error":null}';
+				var response2 = '{"id":"Stratum","jsonrpc":"2.0","method":"getjobtemplate","result":{"difficulty":'+miner.difficulty+',"height":'+current_height+',"job_id":0,"pre_pow":"'+current_hashblob+miner.nextnonce()+'"},"error":null}';
 				miner.socket.write(response2+"\n");
 			}
 		}
@@ -225,7 +228,7 @@ Miner.prototype.nextnonce = function () {
 	if( current_version >= 11) {
 		var noncebuffer = Buffer.allocUnsafe(4);
 		noncebuffer.writeUInt32BE(++jobcounter,0);
-		this.jobnonce = '00000000'+noncebuffer.toString('hex');
+		this.jobnonce = noncebuffer.reverse().toString('hex')+'00000000';
 	}
 	else{
 		this.jobnonce = '';
@@ -304,7 +307,7 @@ function handleClient(data,miner){
 					block.writeUInt32LE(request.params.pow[i], 51+(i*4));
 				}
 				block.writeUInt32LE(request.params.nonce,47);
-				Buffer.from(miner.jobnonce, 'hex').reverse().copy(block,39,0,8);
+				Buffer.from(miner.jobnonce, 'hex').copy(block,39,0,8);
 			}
 			else{
 				for(var i in request.params.pow)
@@ -340,7 +343,7 @@ function handleClient(data,miner){
 	
 	if(request && request.method && request.method == "getjobtemplate") {
 		
-		return miner.respose({difficulty:parseFloat(miner.difficulty),height:current_height,job_id:parseFloat(seq()),pre_pow:current_hashblob+miner.nextnonce()},null,request);
+		return miner.respose({difficulty:parseFloat(miner.difficulty),height:current_height,job_id:0,pre_pow:current_hashblob+miner.nextnonce()},null,request);
 	}
 	else{
 
