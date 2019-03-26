@@ -102,7 +102,6 @@ function getBlockTemplate(callback){
 }
 
 var current_target    = 0;
-var current_version   = 10;
 var current_height    = 1;
 var current_blob      = "";
 var current_hashblob  = "";
@@ -145,19 +144,17 @@ function updateJob(reason,callback){
 
 		if(previous_hash != current_prevhash){
 
-			current_prevhash = previous_hash;
-			current_target = result.difficulty;
-			current_blob = result.blocktemplate_blob;
 			previous_hashblob = current_hashblob;
-			current_hashblob = result.blockhashing_blob;
-			current_height=result.height;
-			current_version= parseInt(current_hashblob.substring(0,2),16);
-			jobcounter=0;
-			if( current_version >= 11) {
-				current_hashblob = current_hashblob.slice(0,-16);	
-			}
+			
+			current_prevhash = previous_hash;
+			current_target   = result.difficulty;
+			current_blob     = result.blocktemplate_blob;
+			current_hashblob = result.blockhashing_blob.slice(0,-16);	
+			current_height   = result.height;
+			
+			jobcounter++;
 
-			logger.info('New block v'+current_version+' to mine at height '+result.height+' w/ difficulty of '+result.difficulty+' (triggered by: '+reason+')');
+			logger.info('New block to mine at height '+result.height+' w/ difficulty of '+result.difficulty+' (triggered by: '+reason+')');
 
 			mainWindow.webContents.send('get-reply', ['data_diff',result.difficulty]);
 			mainWindow.webContents.send('get-reply', ['data_height',result.height]);
@@ -225,14 +222,11 @@ Miner.prototype.respose = function (result,error,request) {
 Miner.prototype.nextnonce = function () {
 
 	this.oldnonce = this.jobnonce;
-	if( current_version >= 11) {
-		var noncebuffer = Buffer.allocUnsafe(4);
-		noncebuffer.writeUInt32BE(++jobcounter,0);
-		this.jobnonce = noncebuffer.reverse().toString('hex')+'00000000';
-	}
-	else{
-		this.jobnonce = '';
-	}
+	
+	var noncebuffer = Buffer.allocUnsafe(4);
+	noncebuffer.writeUInt32BE(++jobcounter,0);
+	this.jobnonce = noncebuffer.reverse().toString('hex')+'00000000';
+	
 	return this.jobnonce;
 }
 	
@@ -301,21 +295,13 @@ function handleClient(data,miner){
 		if(check_diff(current_target,cycle)) {
 			
 			var block = Buffer.from(current_blob, 'hex');
-			if( current_version >= 11) {
-				for(var i in request.params.pow)
-				{
-					block.writeUInt32LE(request.params.pow[i], 51+(i*4));
-				}
-				block.writeUInt32LE(request.params.nonce,47);
-				Buffer.from(miner.jobnonce, 'hex').copy(block,39,0,8);
+
+			for(var i in request.params.pow)
+			{
+				block.writeUInt32LE(request.params.pow[i], 51+(i*4));
 			}
-			else{
-				for(var i in request.params.pow)
-				{
-					block.writeUInt32LE(request.params.pow[i], 43+(i*4));
-				}
-				block.writeUInt32LE(request.params.nonce,39);
-			}
+			block.writeUInt32LE(request.params.nonce,47);
+			Buffer.from(miner.jobnonce, 'hex').copy(block,39,0,8);
 
 			rpc('submitblock', [block.toString('hex')], function(error, result){
 				logger.info('BLOCK ('+miner.login+')');
