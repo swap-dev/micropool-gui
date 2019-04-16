@@ -2,7 +2,7 @@
     margin:0;
     padding-left:20px;
     padding-right:20px;
-    background-color:#151933;
+    background-color:#1d244a;
     background-image:url('logo/swap_logo_white.png');
     background-repeat:no-repeat;
     background-size:auto 300px;
@@ -20,24 +20,31 @@ p {
 div {
     font-family:Verdana, Geneva, sans-serif;
     font-size:13px;
-    color:white;
-    background-color:#111111;
+    color: #a3acde;
+    background-color:#151933;
 }
 div#log {
     font-family:"Courier New", Courier, monospace;
-    color:#0ed12d;
-    background-color:#111111;
+    color:#7edeee;
+    background-color:#151933;
+    border:2px solid #2e3880;
+    border-radius: 0.25rem;
+}
+.data input {
+    background-color:#1d244a;
+    color: #76baf0;
 }
 input {
     font-family:"Courier New", Courier, monospace;
-    border:1px solid #333;
+    border:2px solid #2e3880;
     font-size:12px;
     padding:5px;
-    color:#0ed12d;
-    background-color:#111111;
+    color:#ddd;
+    background-color:#151933;
+    border-radius: 0.25rem;
 }
 span {
-    color:yellow;
+    color:#a561e5;
 }
 :not(input):not(textarea),
 :not(input):not(textarea)::after,
