@@ -1,47 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<style>
-			p {
-				font-family: sans-serif;
-			}
-			div {
-				font-family: sans-serif;
-				font-size:13px;
-				color:white;
-				background-color:black;
-			}
-			div#log {
-				font-family: monospace;
-				color:#0ed12d;
-				background-color:black;
-			}
-			input {
-				font-family: monospace;
-				border:1px solid #888888;
-				font-size:12px;
-				padding:5px;
-				color:#0ed12d;
-				background-color:black;
-			}
-			span {
-				color:yellow;
-			}
-			:not(input):not(textarea),
-			:not(input):not(textarea)::after,
-			:not(input):not(textarea)::before {
-				-webkit-user-select: none;
-				user-select: none;
-				cursor: default;
-			}
-			input, button, textarea, :focus {
-				outline: none; 
-			}
-		</style>
+        <meta charset="UTF-8">
+		<link rel="stylesheet" href="resources/custom.css">
+		<link rel="stylesheet" href="resources/fa.css">
 	</head>
 	<body>
-		<div style="padding-left:20px;padding-right:20px;background-color:#0e293f;position:fixed !important;position:absolute;top:0;right:0;bottom:0;left:0">
+		<div id="body">
 			<table style="margin-top:20px;margin-bottom:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 				<colgroup>
 					<col span="1" style="width: 33%;">
@@ -52,11 +17,11 @@
 					<td colspan="3">
 						<table style="width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
+								<col style="width: 125px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td>Wallet</td>
+								<td><i class="fas fa-wallet fa-lg fa-fw"></i>&ensp;Wallet</td>
 								<td>
 									<input id="mining_address" value="" onchange="updateData()" style="width:calc(100% - 12px)" type="text"/>
 								</td>
@@ -68,11 +33,11 @@
 					<td>
 						<table style="margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
+								<col style="width: 125px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td>Daemon-Host</td>
+								<td><i class="fas fa-server fa-lg fa-fw"></i>&ensp;Daemon-Host</td>
 								<td>
 									<input id="daemonhost" value=""style="width:100%" onchange="updateData()" type="text"/>
 								</td>
@@ -82,13 +47,13 @@
 					<td>
 						<table style="padding-left:20px;margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
+								<col style="width: 93px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td>conn</td>
-								<td>
-									<input disabled="true" id="data_conn" style="width:100%;background-color:#333333" type="text"/>
+								<td><i class="fas fa-users fa-lg fa-fw"></i>&ensp;Workers</td>
+								<td class="data">
+									<input disabled="true" id="data_conn" style="width:100%" type="text"/>
 								</td>
 							</tr>
 						</table>
@@ -96,13 +61,13 @@
 					<td>
 						<table style="padding-left:20px;margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
+								<col style="width: 118px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td>gps</td>
-								<td>
-									<input disabled="true" id="data_gps" style="width:calc(100% - 12px);background-color:#333333" type="text"/>
+								<td><i class="fas fa-tachometer-alt fa-lg fa-fw"></i>&ensp;GPS</td>
+								<td class="data">
+									<input disabled="true" id="data_gps" style="width:calc(100% - 12px)" type="text"/>
 								</td>
 							</tr>
 						</table>
@@ -113,11 +78,11 @@
 					<td>
 						<table style="margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
+								<col style="width: 125px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td>Daemon-Port</td>
+								<td><i class="fas fa-phone-volume fa-lg fa-fw"></i>&ensp;Daemon-Port</td>
 								<td>
 									<input id="daemonport" value="" onchange="updateData()" style="width:100%" type="text"/>
 								</td>
@@ -127,13 +92,13 @@
 					<td>
 						<table style="padding-left:20px;margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
+								<col style="width: 93px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td>Height</td>
-								<td>
-									<input disabled="true" id="data_height" style="width:100%;background-color:#333333" type="text"/>
+								<td><i class="far fa-bars fa-lg fa-fw"></i>&ensp;Height</td>
+								<td class="data">
+									<input disabled="true" id="data_height" style="width:100%" type="text"/>
 								</td>
 							</tr>
 						</table>
@@ -141,13 +106,13 @@
 					<td>
 						<table style="padding-left:20px;margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
+								<col style="width: 118px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td>Shares</td>
-								<td>
-									<input disabled="true" id="data_shares" style="width:calc(100% - 12px);background-color:#333333" type="text"/>
+								<td><i class="fas fa-clone fa-lg fa-fw"></i>&ensp;Shares</td>
+								<td class="data">
+									<input disabled="true" id="data_shares" style="width:calc(100% - 12px)" type="text"/>
 								</td>
 							</tr>
 						</table>
@@ -158,11 +123,11 @@
 					<td>
 						<table style="margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
+								<col style="width: 125px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td>Pool-Port</td>
+								<td><i class="fas fa-phone-volume fa-lg fa-fw"></i>&ensp;Pool-Port</td>
 								<td>
 									<input id="poolport" value="" onchange="updateData()" style="width:100%" type="text"/>
 								</td>
@@ -172,13 +137,13 @@
 					<td>
 						<table style="padding-left:20px;margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
+								<col style="width: 93px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td>Difficutly</td>
-								<td>
-									<input disabled="true" id="data_diff" style="width:100%;background-color:#333333" type="text"/>
+								<td><i class="fas fa-unlock fa-lg fa-fw"></i>&ensp;Difficutly</td>
+								<td class="data">
+									<input disabled="true" id="data_diff" style="width:100%" type="text"/>
 								</td>
 							</tr>
 						</table>
@@ -186,26 +151,25 @@
 					<td>
 						<table style="padding-left:20px;margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
+								<col style="width: 118px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td>Blocks found</td>
-								<td>
-									<input disabled="true" value="0" id="data_blocks" style="width:calc(100% - 12px);background-color:#333333" type="text"/>
+								<td><i class="fas fa-cubes fa-lg fa-fw"></i>&ensp;Blocks found</td>
+								<td class="data">
+									<input disabled="true" value="0" id="data_blocks" style="width:calc(100% - 12px)" type="text"/>
 								</td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 			</table>
-			<div id="log" style="overflow:hidden;border:1px solid #888888;padding:5px;height:calc(100% - 236px)">
+			<div id="log" style="overflow:hidden;padding:5px;height:calc(100% - 236px)">
 			</div>
 		</div>
 		<script>
 			var electron = require('electron');
 			var loglines = [];
-
 			function updateData() { 
 			
 				if( (document.getElementById('daemonport').value < 1024)||(document.getElementById('daemonport').value > 65535))
@@ -217,9 +181,7 @@
 				ipcRenderer.send('set', ['poolport',parseFloat(document.getElementById('poolport').value)|0]);
 				ipcRenderer.send('set', ['daemonhost',document.getElementById('daemonhost').value]);
 				ipcRenderer.send('set', ['mining_address',document.getElementById('mining_address').value]);
-
 			}
-
 			const { ipcRenderer } = require('electron')
 			ipcRenderer.send('get', 'daemonport');
 			ipcRenderer.send('get', 'poolport');
@@ -229,14 +191,12 @@
 			ipcRenderer.on('get-reply', (event, arg) => {
 				document.getElementById(arg[0]).value=arg[1];
 			})
-
 			ipcRenderer.on('log', (event, msg) => {
 				var d = new Date();
 				loglines.unshift(d.toISOString()+' <span>['+msg[0]+']</span> '+msg[1]);
 				if (loglines.length > 100) loglines.pop();
 				document.getElementById('log').innerHTML=loglines.join('<br/>');
 			});
-
 		</script>
 	</body>
 </html>
