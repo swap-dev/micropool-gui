@@ -1,4 +1,4 @@
 # micropool-gui
 Minimal Swap Pool Windows GUI
 
-![screenshot](https://cdn.discordapp.com/attachments/541411408953344002/567788105197682699/Capture6.PNG)
+![screenshot](https://cdn.discordapp.com/attachments/541411408953344002/568984595505086475/Capture7.PNG)
