@@ -162,7 +162,7 @@ function updateJob(reason,callback){
 			for (var minerId in connectedMiners){
 				var miner = connectedMiners[minerId];
 				miner.nonces = [];
-				var response2 = '{"id":"Stratum","jsonrpc":"2.0","method":"getjobtemplate","result":{"difficulty":'+miner.difficulty+',"height":'+current_height+',"job_id":'+seq()+',"pre_pow":"'+current_hashblob+miner.nextnonce()+'"},"error":null}';
+				var response2 = '{"id":"Stratum","jsonrpc":"2.0","method":"getjobtemplate","result":{"algo":"cuckaroo","edgebits":29,"proofsize":32,"noncebytes":4,"difficulty":'+miner.difficulty+',"height":'+current_height+',"job_id":'+seq()+',"pre_pow":"'+current_hashblob+miner.nextnonce()+'"},"error":null}';
 				miner.socket.write(response2+"\n");
 			}
 		}
@@ -329,7 +329,7 @@ function handleClient(data,miner){
 	
 	if(request && request.method && request.method == "getjobtemplate") {
 		
-		return miner.respose({difficulty:parseFloat(miner.difficulty),height:current_height,job_id:seq(),pre_pow:current_hashblob+miner.nextnonce()},null,request);
+		return miner.respose({algo:"cuckaroo",edgebits:29,proofsize:32,noncebytes:4,difficulty:parseFloat(miner.difficulty),height:current_height,job_id:seq(),pre_pow:current_hashblob+miner.nextnonce()},null,request);
 	}
 	else{
 
