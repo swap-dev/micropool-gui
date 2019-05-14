@@ -4,8 +4,52 @@
         <meta charset="UTF-8">
 		<link rel="stylesheet" href="resources/custom.css">
 		<link rel="stylesheet" href="resources/css/fa.css">
+		<script>
+			function openTab(evt, cityName) {
+				var i, tabcontent, tablinks;
+
+				tabcontent = document.getElementsByClassName("tabcontent");
+				for (i = 0; i < tabcontent.length; i++) {
+					tabcontent[i].style.display = "none";
+				}
+
+				tablinks = document.getElementsByClassName("tablinks");
+				for (i = 0; i < tablinks.length; i++) {
+					tablinks[i].className = tablinks[i].className.replace(" active", "");
+				}
+
+				document.getElementById(cityName).style.display = "block";
+				evt.currentTarget.className += " active";
+			}
+		</script>
+		<style>
+			.tab {
+				overflow: hidden;
+			}
+
+			.tab button {
+				float: left;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				padding: 14px 16px;
+				transition: 0.3s;
+			}
+
+			.tab button:hover {
+			}
+
+			.tab button.active {
+			}
+
+			.tabcontent {
+				height:calc(100% - 290px);
+				display: none;
+				padding: 0px 0px;
+			}
+		</style>
 	</head>
-	<body>
+	<body onload="openTab(event,'tablog')">
 		<div id="body">
 			<table style="margin-top:20px;margin-bottom:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 				<colgroup>
@@ -164,8 +208,26 @@
 					</td>
 				</tr>
 			</table>
-			<div id="log" style="overflow:hidden;padding:5px;height:calc(100% - 236px)">
+
+			<div class="tab">
+			<button class="tablinks" onclick="openTab(event, 'tablog')">Log</button>
+			<button class="tablinks" onclick="openTab(event, 'tabworker')">Worker</button>
+			<button class="tablinks" onclick="openTab(event, 'tabblocks')">Blocks</button>
 			</div>
+
+			<div id="tablog" class="tabcontent">
+				<div id="log" style="overflow:hidden;padding:5px;height:100%">
+				</div>
+			</div>
+
+			<div id="tabworker" class="tabcontent">
+				w
+			</div>
+
+			<div id="tabblocks" class="tabcontent">
+				b
+			</div>
+
 		</div>
 		<script>
 			var electron = require('electron');
