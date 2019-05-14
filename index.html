@@ -22,32 +22,6 @@
 				evt.currentTarget.className += " active";
 			}
 		</script>
-		<style>
-			.tab {
-				overflow: hidden;
-			}
-
-			.tab button {
-				float: left;
-				border: none;
-				outline: none;
-				cursor: pointer;
-				padding: 14px 16px;
-				transition: 0.3s;
-			}
-
-			.tab button:hover {
-			}
-
-			.tab button.active {
-			}
-
-			.tabcontent {
-				height:calc(100% - 290px);
-				display: none;
-				padding: 0px 0px;
-			}
-		</style>
 	</head>
 	<body onload="openTab(event,'tablog')">
 		<div id="body">
@@ -210,9 +184,9 @@
 			</table>
 
 			<div class="tab">
-			<button class="tablinks" onclick="openTab(event, 'tablog')">Log</button>
-			<button class="tablinks" onclick="openTab(event, 'tabworker')">Worker</button>
-			<button class="tablinks" onclick="openTab(event, 'tabblocks')">Blocks</button>
+			<button class="tablinks" onclick="openTab(event, 'tablog')">Log&ensp;<i class="fas fa-cogs"></i></button>
+			<button class="tablinks" onclick="openTab(event, 'tabworker')">Worker&ensp;<i class="fas fa-user-hard-hat"></i></button>
+			<button class="tablinks" onclick="openTab(event, 'tabblocks')">Blocks&ensp;<i class="fas fa-cubes"></i></button>
 			</div>
 
 			<div id="tablog" class="tabcontent">
