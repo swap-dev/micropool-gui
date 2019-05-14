@@ -23,7 +23,7 @@ div {
     color: #a3acde;
     background-color:#151933;
 }
-div#log {
+div#log, div#tabworker, div#tabblocks {
     font-family:"Courier New", Courier, monospace;
     color:#7edeee;
     background-color:#151933;
@@ -55,4 +55,60 @@ span {
 }
 input, button, textarea, :focus {
     outline:none; 
+}
+.tab {
+    overflow: hidden;
+    background: transparent;
+}
+
+.tab button {
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab button {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 2px solid #2e3880;
+    border-bottom:0px;
+    padding: 0.55rem 1.8rem;
+    font-size: 1rem;
+    line-height: 1;
+    border-radius: 0.25rem;
+    border-bottom-right-radius:0;
+    border-bottom-left-radius:0;
+    -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    color: #a3acde;
+    background-color: transparent;
+    background-image: none;
+    margin-left:1rem;
+}
+
+.tab button:hover {
+    background-color: #2e3880;
+}
+
+.tab button.active {
+    background-color: #2e3880;
+}
+
+.tabcontent {
+    height:calc(100% - 290px);
+    display: none;
+    padding: 0px 0px;
 }
