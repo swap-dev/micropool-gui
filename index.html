@@ -71,7 +71,7 @@
 							<tr>
 								<td><i class="fas fa-users fa-lg fa-fw"></i>&ensp;Workers</td>
 								<td class="data">
-									<input disabled="true" id="data_conn" style="width:100%" type="text"/>
+									<input disabled="true" id="data_conn" style="width:100%" type="text" value="0"/>
 								</td>
 							</tr>
 						</table>
@@ -85,7 +85,7 @@
 							<tr>
 								<td><i class="fas fa-tachometer-alt fa-lg fa-fw"></i>&ensp;GPS</td>
 								<td class="data">
-									<input disabled="true" id="data_gps" style="width:calc(100% - 12px)" type="text"/>
+									<input disabled="true" id="data_gps" style="width:calc(100% - 12px)" type="text" value="0.00"/>
 								</td>
 							</tr>
 						</table>
@@ -130,7 +130,7 @@
 							<tr>
 								<td><i class="fas fa-clone fa-lg fa-fw"></i>&ensp;Shares</td>
 								<td class="data">
-									<input disabled="true" id="data_shares" style="width:calc(100% - 12px)" type="text"/>
+									<input disabled="true" id="data_shares" style="width:calc(100% - 12px)" type="text" value="0"/>
 								</td>
 							</tr>
 						</table>
@@ -195,11 +195,13 @@
 			</div>
 
 			<div id="tabworker" class="tabcontent">
-				w
+				<div id="workers" style="overflow:hidden;padding:5px;height:100%">
+				</div>
 			</div>
 
 			<div id="tabblocks" class="tabcontent">
-				b
+				<div id="blocks" style="overflow:hidden;padding:5px;height:100%">
+				</div>
 			</div>
 
 		</div>
@@ -226,6 +228,12 @@
 			
 			ipcRenderer.on('get-reply', (event, arg) => {
 				document.getElementById(arg[0]).value=arg[1];
+			})
+			ipcRenderer.on('workers', (event, arg) => {
+				document.getElementById('workers').innerHTML=arg;
+			})
+			ipcRenderer.on('blocks', (event, arg) => {
+				document.getElementById('blocks').innerHTML=arg;
 			})
 			ipcRenderer.on('log', (event, msg) => {
 				var d = new Date();

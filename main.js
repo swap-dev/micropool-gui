@@ -109,6 +109,8 @@ var previous_hashblob = "";
 var current_prevhash  = "";
 var connectedMiners   = {};
 var jobcounter=0;
+var blockstxt  = "";
+var jobshares=0;
 
 function nonceCheck(miner,nonce) {
 
@@ -125,8 +127,21 @@ function hashrate(miner) {
 
 	var hr = miner.shares*32/((Date.now()/1000|0)-miner.begin);
 
-	return 'rig:'+miner.pass+' '+hr.toFixed(2)+' gps';
+	miner.gps = hr;
+	
+	var total = 0;
+	var workertxt='';
 
+	for (var minerId in connectedMiners){
+		var miner2 = connectedMiners[minerId];
+		total+=miner2.gps;
+		workertxt+=miner2.login+' '+miner2.agent+' '+miner2.pass+' '+miner2.difficulty+' '+miner2.shares+' '+miner2.gps.toFixed(2)+'<br/>';
+	}
+	mainWindow.webContents.send('workers', workertxt);
+	mainWindow.webContents.send('get-reply', ['data_gps',total.toFixed(2)]);
+
+	return 'rig:'+miner.pass+' '+hr.toFixed(2)+' gps';
+		
 }
 
 function updateJob(reason,callback){
@@ -174,10 +189,12 @@ function Miner(id,socket){
 	this.socket = socket;
 	this.login = '';
 	this.pass = '';
+	this.agent = '';
 	this.jobnonce = '';
 	this.oldnonce = '';
 	this.begin = Date.now()/1000|0;
 	this.shares = 0;
+	this.gps = 0;
 	this.difficulty = 1;
 	this.id = id;
 	this.nonces = [];
@@ -199,6 +216,15 @@ function Miner(id,socket){
 		logger.info('miner connction dropped '+client.login);
 		mainWindow.webContents.send('get-reply', ['data_conn',--conn]);
 		delete connectedMiners[client.id];
+		var total=0;
+		var workertxt='';
+		for (var minerId in connectedMiners){
+			var miner2 = connectedMiners[minerId];
+			total+=miner2.gps;
+			workertxt+=miner2.login+' '+miner2.agent+' '+miner2.pass+' '+miner2.difficulty+' '+miner2.shares+' '+miner2.gps.toFixed(2)+'<br/>';
+		}
+		mainWindow.webContents.send('workers', workertxt);
+		mainWindow.webContents.send('get-reply', ['data_gps',total.toFixed(2)]);
 		socket.end();
 	});
 
@@ -242,6 +268,7 @@ function handleClient(data,miner){
 
 		miner.login=request.params.login;
 		miner.pass =request.params.pass;
+		miner.agent =request.params.agent;
 		var fixedDiff = miner.login.indexOf('.');
 		if(fixedDiff != -1) {
 			miner.difficulty = miner.login.substr(fixedDiff + 1);
@@ -250,6 +277,13 @@ function handleClient(data,miner){
 			miner.login = miner.login.substr(0, fixedDiff);
 		}
 		logger.info('miner connect '+request.params.login+' ('+request.params.agent+') ('+miner.difficulty+')');
+		
+		var workertxt='';
+		for (var minerId in connectedMiners){
+			var miner2 = connectedMiners[minerId];
+			workertxt+=miner2.login+' '+miner2.agent+' '+miner2.pass+' '+miner2.difficulty+' '+miner2.shares+' '+miner2.gps.toFixed(2)+'<br/>';
+		}
+		mainWindow.webContents.send('workers', workertxt);
 		return miner.respose('ok',null,request);
 	}
 	
@@ -308,12 +342,16 @@ function handleClient(data,miner){
 				updateJob('found block');
 				blocks++;
 				mainWindow.webContents.send('get-reply', ['data_blocks',blocks]);
+				blockstxt+=current_height+' '+((jobshares/current_target*100).toFixed(2))+'%<br/>';
+				jobshares=0;
+				mainWindow.webContents.send('blocks', blockstxt);
 			});
 		}
 		
 		if(check_diff(miner.difficulty,cycle)) {
 		
 			shares+=parseFloat(miner.difficulty);
+			jobshares+=parseFloat(miner.difficulty);
 			mainWindow.webContents.send('get-reply', ['data_shares',shares]);
 				
 			logger.info('share ('+miner.login+') '+miner.difficulty+' ('+hashrate(miner)+')');
@@ -348,6 +386,7 @@ var server = net.createServer(function (localsocket) {
 	var miner = new Miner(minerId,localsocket);
 	mainWindow.webContents.send('get-reply', ['data_conn',++conn]);
 	connectedMiners[minerId] = miner;
+	
 });
 
 server.timeout = 0;

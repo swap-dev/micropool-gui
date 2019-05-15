@@ -23,7 +23,7 @@ div {
     color: #a3acde;
     background-color:#151933;
 }
-div#log, div#tabworker, div#tabblocks {
+div#log, div#workers, div#blocks {
     font-family:"Courier New", Courier, monospace;
     color:#7edeee;
     background-color:#151933;
