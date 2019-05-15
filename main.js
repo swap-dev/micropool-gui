@@ -352,7 +352,7 @@ function handleClient(data,miner){
 		
 			shares+=parseFloat(miner.difficulty);
 			jobshares+=parseFloat(miner.difficulty);
-			mainWindow.webContents.send('get-reply', ['data_shares',shares]);
+			mainWindow.webContents.send('get-reply', ['data_shares',shares+' ('+(jobshares/current_target*100).toFixed(2)+'%)']);
 				
 			logger.info('share ('+miner.login+') '+miner.difficulty+' ('+hashrate(miner)+')');
 			return miner.respose('ok',null,request);
