@@ -342,7 +342,7 @@ function handleClient(data,miner){
 				updateJob('found block');
 				blocks++;
 				mainWindow.webContents.send('get-reply', ['data_blocks',blocks]);
-				blockstxt+=current_height+' '+((jobshares/current_target*100).toFixed(2))+'%<br/>';
+				blockstxt+=(current_height-1)+' '+((jobshares/current_target*100).toFixed(2))+'%<br/>';
 				jobshares=0;
 				mainWindow.webContents.send('blocks', blockstxt);
 			});
