@@ -23,13 +23,6 @@ div {
     color: #a3acde;
     background-color:#151933;
 }
-div#log, div#workers, div#blocks {
-    font-family:"Courier New", Courier, monospace;
-    color:#7edeee;
-    background-color:#151933;
-    border:2px solid #2e3880;
-    border-radius: 0.25rem;
-}
 .data input {
     background-color:#1d244a;
     color: #76baf0;
@@ -108,7 +101,45 @@ input, button, textarea, :focus {
 }
 
 .tabcontent {
-    height:calc(100% - 290px);
+    height:calc(88% - 20rem);
     display: none;
     padding: 0px 0px;
+}
+div#log, 
+div#workers, 
+div#blocks, 
+div#help {
+    font-family:"Courier New", Courier, monospace;
+    color:#7edeee;
+    background-color:#151933;
+    border:2px solid #2e3880;
+    border-radius: 0.25rem;
+    overflow:hidden;
+    padding:5px;
+    height:100%;
+}
+.data_gps input {
+    font-family: Verdana, Geneva, sans-serif;
+    background-color: transparent;
+    border:0;
+    font-size:2rem;
+}
+.data_gps {
+    font-size:2rem;
+}
+
+.toggle a,
+.toggle a::before,
+.toggle a:visited::before {
+    color: #a3acde;
+    font-family: "Font Awesome 5 Pro"; font-weight: 400; content: "\f205";
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.toggle a:active::before {
+    color: #a3acde;
+    font-family: "Font Awesome 5 Pro"; font-weight: 400; content: "\f204";
+    font-size: 1.5rem;
+    text-decoration: none;
 }

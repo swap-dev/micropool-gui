@@ -35,6 +35,24 @@
 					<td colspan="3">
 						<table style="width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
+								<col style="width: 8rem">
+								<col style="width: *">
+							</colgroup>
+							<tr>
+								<td class="data_gps">
+									<i class="fas fa-tachometer-alt-fast"></i> GPS
+								</td>	
+								<td class="data_gps">
+									<input disabled="true" id="data_gps" type="text" value="0.00"/>
+								</td>	
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<table style="margin-top:20px; width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+							<colgroup>
 								<col style="width: 125px">
 								<col style="width: *">
 							</colgroup>
@@ -79,19 +97,18 @@
 					<td>
 						<table style="padding-left:20px;margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 118px">
+								<col style="width: 100px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td><i class="fas fa-tachometer-alt fa-lg fa-fw"></i>&ensp;GPS</td>
+								<td><i class="fas fa-history fa-lg fa-fw"></i>&ensp;Blocktime</td>
 								<td class="data">
-									<input disabled="true" id="data_gps" style="width:calc(100% - 12px)" type="text" value="0.00"/>
+									<input disabled="true" id="data_shares" style="width:calc(100% - 12px)" type="text" value="0"/>
 								</td>
 							</tr>
 						</table>
 					</td>
 				</tr>
-
 				<tr>
 					<td>
 						<table style="margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
@@ -124,19 +141,19 @@
 					<td>
 						<table style="padding-left:20px;margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 118px">
+								<col style="width: 100px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td><i class="fas fa-clone fa-lg fa-fw"></i>&ensp;Shares</td>
+								<td><i class="fas fa-dumbbell fa-lg fa-fw"></i></i>&ensp;Effort</td>
 								<td class="data">
-									<input disabled="true" id="data_shares" style="width:calc(100% - 12px)" type="text" value="0"/>
+									<input disabled="true" value="0" id="data_blocks" style="width:calc(100% - 12px)" type="text"/>
 								</td>
+								</tr>
 							</tr>
 						</table>
 					</td>
 				</tr>
-
 				<tr>
 					<td>
 						<table style="margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
@@ -159,6 +176,50 @@
 								<col style="width: *">
 							</colgroup>
 							<tr>
+								<td><i class="fas fa-chart-network fa-lg fa-fw"></i>&ensp;Network</td>
+								<td class="data">
+									<input disabled="true" id="data_diff" style="width:100%" type="text"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table style="padding-left:20px;margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: 100px">
+								<col style="width: *">
+							</colgroup>
+							<tr>
+								<td><i class="fas fa-cubes fa-lg fa-fw"></i>&ensp;Blocks</td>
+								<td class="data">
+									<input disabled="true" value="0" id="data_blocks" style="width:calc(100% - 12px)" type="text"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table style="margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: 125px">
+								<col style="width: *">
+							</colgroup>
+							<tr>
+								<td><i class="fas fa-broadcast-tower fa-lg fa-fw"></i>&ensp;Remote node</td>
+								<td>
+									<span class="toggle"><a href="#"></a></span>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table style="padding-left:20px;margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: 93px">
+								<col style="width: *">
+							</colgroup>
+							<tr>
 								<td><i class="fas fa-unlock fa-lg fa-fw"></i>&ensp;Difficutly</td>
 								<td class="data">
 									<input disabled="true" id="data_diff" style="width:100%" type="text"/>
@@ -169,13 +230,13 @@
 					<td>
 						<table style="padding-left:20px;margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 118px">
+								<col style="width: 100px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td><i class="fas fa-cubes fa-lg fa-fw"></i>&ensp;Blocks found</td>
+								<td><i class="fas fa-clone fa-lg fa-fw"></i>&ensp;Shares</td>
 								<td class="data">
-									<input disabled="true" value="0" id="data_blocks" style="width:calc(100% - 12px)" type="text"/>
+									<input disabled="true" id="data_shares" style="width:calc(100% - 12px)" type="text" value="0"/>
 								</td>
 							</tr>
 						</table>
@@ -187,20 +248,26 @@
 			<button class="tablinks" onclick="openTab(event, 'tablog')">Log&ensp;<i class="fas fa-cogs"></i></button>
 			<button class="tablinks" onclick="openTab(event, 'tabworker')">Worker&ensp;<i class="fas fa-user-hard-hat"></i></button>
 			<button class="tablinks" onclick="openTab(event, 'tabblocks')">Blocks&ensp;<i class="fas fa-cubes"></i></button>
+			<button class="tablinks" onclick="openTab(event, 'tabhelp')">Help&ensp;<i class="fas fa-hands-helping"></i></button>
 			</div>
 
 			<div id="tablog" class="tabcontent">
-				<div id="log" style="overflow:hidden;padding:5px;height:100%">
+				<div id="log">
 				</div>
 			</div>
 
 			<div id="tabworker" class="tabcontent">
-				<div id="workers" style="overflow:hidden;padding:5px;height:100%">
+				<div id="workers">
 				</div>
 			</div>
 
 			<div id="tabblocks" class="tabcontent">
-				<div id="blocks" style="overflow:hidden;padding:5px;height:100%">
+				<div id="blocks">
+				</div>
+			</div>
+
+			<div id="tabblocks" class="tabcontent">
+				<div id="help">
 				</div>
 			</div>
 
