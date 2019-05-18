@@ -123,13 +123,27 @@ input, button, textarea, :focus {
 }
 
 .tabcontent {
-    height:calc(100% - 393px);
+    height:calc(100% - 382px);
     display: none;
     padding: 0px 0px;
 }
-div#log::-webkit-scrollbar {
+
+::-webkit-scrollbar {
     width: 1em;
 }
+
+::-webkit-scrollbar-track {
+    background: #151933; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2e3880; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2e3880; 
+}
+
 div#log, 
 div#workers, 
 div#blocks, 
@@ -139,9 +153,9 @@ div#help {
     background-color:#151933;
     border:2px solid #2e3880;
     border-radius: 0.25rem;
-    overflow:hidden;
     padding:5px;
     height:100%;
+    overflow: auto;
 }
 .data_gps input {
     font-family: Verdana, Geneva, sans-serif;
@@ -165,7 +179,7 @@ div#help {
     -ms-user-select: none;
     user-select: none;
     border: 2px solid #151933;
-    padding: 0.75rem 1.8rem;
+    padding: 0.55rem 1.8rem;
     font-size: .8rem;
     line-height: 1;
     border-radius: 0.25rem;
