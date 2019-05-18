@@ -45,7 +45,7 @@ div {
 }
 .data input {
     background-color: transparent;
-    color: #76baf0;
+    color: #ddd;
     font-size: 2rem;
     font-family: Verdana, Geneva, sans-serif;
 }
@@ -55,7 +55,7 @@ input {
     font-size: .8rem;
     line-height: 1rem;
     padding:5px;
-    color:#ddd;
+    color:#a3acde;
     background-color:#151933;
     border-radius: 0.25rem;
 }
@@ -149,7 +149,7 @@ div#workers,
 div#blocks, 
 div#help {
     font-family:"Courier New", Courier, monospace;
-    color:#7edeee;
+    color:#aaa;
     background-color:#151933;
     border:2px solid #2e3880;
     border-radius: 0.25rem;
@@ -183,8 +183,6 @@ div#help {
     font-size: .8rem;
     line-height: 1;
     border-radius: 0.25rem;
-    border-bottom-right-radius:0;
-    border-bottom-left-radius:0;
     -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -202,8 +200,8 @@ div#help {
 }
 
 .reset a:active {
-    background-color: #2e3880;
-    border: 2px solid #2e3880;
+    background-color: #151933;
+    border: 2px solid #151933;
 }
 
 .toggle,
@@ -211,13 +209,13 @@ div#help {
 .toggle::before {
     color: #a3acde;
     font-family: "Font Awesome 5 Pro"; font-weight: 400; content: "\f205";
-    font-size: 1rem;
+    font-size: .8rem;
     text-decoration: none;
 }
 
 a:active .toggle::before {
     color: #a3acde;
     font-family: "Font Awesome 5 Pro"; font-weight: 400; content: "\f204";
-    font-size: 1rem;
+    font-size: .8rem;
     text-decoration: none;
 }
