@@ -1,36 +1,59 @@
+body {
+    background-color:#1d244a;
+}
 #body {
     margin:0;
+    margin-bottom:1rem;
     padding-left:20px;
     padding-right:20px;
     background-color:#1d244a;
     background-image:url('logo/swap_logo_white.png');
     background-repeat:no-repeat;
     background-size:auto 300px;
-    background-position:center 5%;
     position:fixed !important;
     position:absolute;
     top:0;
     right:0;
     bottom:0;
     left:0;
+    min-width:39rem;
 }
 p {
-    font-family:Verdana, Geneva, sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
+}
+td {
+    vertical-align: text-bottom;
+}
+.tablestyle {
+    min-width:30rem;
+    max-width:60rem;
+    margin-top:0px;
+    margin-bottom:20px;
+    width:100%;
+    table-layout: fixed;
+    border:0;
 }
 div {
-    font-family:Verdana, Geneva, sans-serif;
-    font-size:13px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size:.8rem;
     color: #a3acde;
     background-color:#151933;
 }
+.data {
+    font-size: 1rem;
+    background-color: transparent;
+}
 .data input {
-    background-color:#1d244a;
+    background-color: transparent;
     color: #76baf0;
+    font-size: 2rem;
+    font-family: Verdana, Geneva, sans-serif;
 }
 input {
-    font-family:"Courier New", Courier, monospace;
-    border:2px solid #2e3880;
-    font-size:12px;
+    font-family: Verdana, Geneva, sans-serif;
+    border: 0px solid #2e3880;
+    font-size: 1rem;
+    line-height: 1rem;
     padding:5px;
     color:#ddd;
     background-color:#151933;
@@ -44,7 +67,6 @@ span {
 :not(input):not(textarea)::before {
     -webkit-user-select:none;
     user-select:none;
-    cursor:default;
 }
 input, button, textarea, :focus {
     outline:none; 
@@ -101,7 +123,7 @@ input, button, textarea, :focus {
 }
 
 .tabcontent {
-    height:calc(88% - 20rem);
+    height:calc(100% - 393px);
     display: none;
     padding: 0px 0px;
 }
@@ -128,18 +150,57 @@ div#help {
     font-size:2rem;
 }
 
-.toggle a,
-.toggle a::before,
-.toggle a:visited::before {
+.reset a {
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 2px solid #151933;
+    padding: 0.75rem 1.8rem;
+    font-size: .8rem;
+    line-height: 1;
+    border-radius: 0.25rem;
+    border-bottom-right-radius:0;
+    border-bottom-left-radius:0;
+    -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    color: #a3acde;
+    background-color: transparent;
+    background-image: none;
+    cursor:pointer;
+}
+
+.reset a:hover {
+    background-color: #151933;
+    border: 2px solid #151933;
+}
+
+.reset a:active {
+    background-color: #2e3880;
+    border: 2px solid #2e3880;
+}
+
+.toggle,
+.toggle::before,
+.toggle::before {
     color: #a3acde;
     font-family: "Font Awesome 5 Pro"; font-weight: 400; content: "\f205";
-    font-size: 1.5rem;
+    font-size: 1rem;
     text-decoration: none;
 }
 
-.toggle a:active::before {
+a:active .toggle::before {
     color: #a3acde;
     font-family: "Font Awesome 5 Pro"; font-weight: 400; content: "\f204";
-    font-size: 1.5rem;
+    font-size: 1rem;
     text-decoration: none;
 }
