@@ -40,7 +40,7 @@ div {
     background-color:#151933;
 }
 .data {
-    font-size: 1rem;
+    font-size: .8rem;
     background-color: transparent;
 }
 .data input {
@@ -52,7 +52,7 @@ div {
 input {
     font-family: Verdana, Geneva, sans-serif;
     border: 0px solid #2e3880;
-    font-size: 1rem;
+    font-size: .8rem;
     line-height: 1rem;
     padding:5px;
     color:#ddd;
@@ -98,7 +98,7 @@ input, button, textarea, :focus {
     border: 2px solid #2e3880;
     border-bottom:0px;
     padding: 0.55rem 1.8rem;
-    font-size: 1rem;
+    font-size: .8rem;
     line-height: 1;
     border-radius: 0.25rem;
     border-bottom-right-radius:0;
@@ -126,6 +126,9 @@ input, button, textarea, :focus {
     height:calc(100% - 393px);
     display: none;
     padding: 0px 0px;
+}
+div#log::-webkit-scrollbar {
+    width: 1em;
 }
 div#log, 
 div#workers, 
