@@ -26,7 +26,7 @@ td {
 }
 .tablestyle {
     min-width:30rem;
-    max-width:60rem;
+    max-width:100%;
     margin-top:0px;
     margin-bottom:20px;
     width:100%;
@@ -126,6 +126,8 @@ input, button, textarea, :focus {
     height:calc(100% - 382px);
     display: none;
     padding: 0px 0px;
+    min-width:30rem;
+    max-width:100%;
 }
 
 ::-webkit-scrollbar {
