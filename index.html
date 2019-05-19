@@ -25,36 +25,36 @@
 	</head>
 	<body onload="openTab(event,'tablog')">
 		<div id="body">
-			<table class="tablestyle" cellspacing="0" cellpadding="0">
+			<table class="table-style" cellspacing="0" cellpadding="0">
 				<colgroup>
 					<col span="1" style="width: 33%;">
 					<col span="1" style="width: 34%;">
 					<col span="1" style="width: 33%;">
 				</colgroup>
-				<tr>
+				<tr class="dashboard">
 					<td colspan="3">
-						<table style="margin-top:20px; width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+						<table class="table-input-top" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 125px">
+								<col style="width: 90px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-wallet fa-lg fa-fw"></i>&ensp;Wallet</td>
-								<td>
+								<td class="right-border1">
 									<input id="mining_address" value="" onchange="updateData()" style="width:calc(100% - 12px)" type="text"/>
 								</td>
 							</tr>
 						</table>
 					</td>
 				</tr>
-				<tr>
+				<tr class="dashboard">
 					<td>
-						<table style="margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+						<table class="table-input-top" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 125px">
+								<col style="width: 135px">
 								<col style="width: *">
 							</colgroup>
-							<tr>
+							<tr class="no-top-line">
 								<td><i class="fas fa-server fa-lg fa-fw"></i>&ensp;Daemon-Host</td>
 								<td>
 									<input id="daemonhost" value=""style="width:100%" onchange="updateData()" type="text"/>
@@ -63,12 +63,12 @@
 						</table>
 					</td>
 					<td>
-						<table style="padding-left:20px;margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+						<table class="table-input-top table-input-top2" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 125px">
+								<col style="width: 135px">
 								<col style="width: *">
 							</colgroup>
-							<tr>
+							<tr class="no-top-line">
 								<td><i class="fas fa-phone-volume fa-lg fa-fw"></i>&ensp;Daemon-Port</td>
 								<td>
 									<input id="daemonport" value="" onchange="updateData()" style="width:100%" type="text"/>
@@ -77,29 +77,105 @@
 						</table>
 					</td>
 					<td>
-						<table style="padding-left:20px;margin-top:20px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+						<table class="table-input-top table-input-top2" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
+								<col style="width: 110px">
 								<col style="width: *">
 							</colgroup>
-							<tr>
+							<tr class="no-top-line">
 								<td><i class="fas fa-phone-volume fa-lg fa-fw"></i>&ensp;Pool-Port</td>
-								<td>
+								<td class="right-border1">
 									<input id="poolport" value="" onchange="updateData()" style="width:calc(100% - 12px)" type="text"/>
 								</td>
 							</tr>
 						</table>
 					</td>
 				</tr>
+				<tr class="dashboard top-line">
+						<td class="bottom-left-corner">
+							<table class="table-input-top" cellspacing="0" cellpadding="0">
+								<colgroup>
+									<col style="width: *">
+								</colgroup>
+								<tr class="no-top-line">
+									<td>
+										<div id="myDIV">
+										<i class="fas fa-broadcast-tower fa-lg fa-fw"></i>&ensp;Remote Node&ensp;
+										<button class="btn">On&ensp;<i class="fas fa-lightbulb-on"></i></button>
+										<button class="btn active">Off&ensp;<i class="fas fa-lightbulb-slash"></i></button>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table class="table-input-top table-input-top2" cellspacing="0" cellpadding="0">
+								<colgroup>
+									<col style="width: *">
+								</colgroup>
+								<tr class="no-top-line">
+									<td class="reset">
+										<i class="fas fa-file-chart-line fa-lg fa-fw"></i>&ensp;Data&ensp;
+										<button>Reset&ensp;<i class="fas fa-redo fa-flip-horizontal"></i></button>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td class="bottom-right-corner">
+							<table class="table-input-top table-input-top2" cellspacing="0" cellpadding="0">
+								<colgroup>
+									<col style="width: 110px">
+									<col style="width: *">
+								</colgroup>
+								<tr class="no-top-line">
+									<td>
+									</td>
+									<td class="right-border1">
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
 				<tr>
 					<td>
-						<table style="margin-top:10px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+						<table class="table-header table-header-top" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 93px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td><i class="fas fa-tachometer-alt-fast fa-lg fa-fw"></i> GPS</td>
+								<td><i class="fas fa-tachometer-alt-fast fa-lg fa-fw"></i>&ensp;Graph Rate</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table class="table-header table-header2 table-header-top" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: *">
+							</colgroup>
+							<tr>
+								<td><i class="fas fa-clone fa-lg fa-fw"></i>&ensp;Shares</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table class="table-header table-header2 table-header-top" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: *">
+							</colgroup>
+							<tr>
+								<td><i class="fas fa-chart-line fa-lg fa-fw"></i>&ensp;Current Effort</td>
+							</tr>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table style="margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: *">
+							</colgroup>
+							<tr>
 								<td class="data">
 									<input disabled="true" id="data_gps" style="width:100%" type="text" value="0.00"/>
 								</td>
@@ -107,13 +183,11 @@
 						</table>
 					</td>
 					<td>
-						<table style="padding-left:20px;margin-top:10px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td><i class="fas fa-clone fa-lg fa-fw"></i>&ensp;Shares</td>
 								<td class="data">
 									<input disabled="true" id="data_shares" style="width:100%" type="text" value="0"/>
 								</td>
@@ -121,30 +195,57 @@
 						</table>
 					</td>
 					<td>
-						<table style="padding-left:20px;margin-top:10px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td><i class="fas fa-chart-line fa-lg fa-fw"></i>&ensp;Effort</td>
 								<td class="data">
-									<input disabled="true" value="0" id="data_blocks" style="width:calc(100% - 12px)" type="text"/>
+									<input disabled="true" value="0%" id="data_blocks" style="width:calc(100% - 12px)" type="text"/>
 								</td>
-								</tr>
 							</tr>
 						</table>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<table style="padding-left:0px;margin-top:10px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+						<table class="table-header" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 93px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-cubes fa-lg fa-fw"></i>&ensp;Blocks</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table class="table-header table-header2" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: *">
+							</colgroup>
+							<tr>
+								<td><i class="fas fa-history fa-lg fa-fw"></i>&ensp;Blocktime</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table class="table-header table-header2" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: *">
+							</colgroup>
+							<tr>
+								<td><i class="fas fa-users fa-lg fa-fw"></i>&ensp;Workers</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table style="padding-left:0px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: *">
+							</colgroup>
+							<tr>
 								<td class="data">
 									<input disabled="true" value="0" id="data_blocks" style="width:100%" type="text"/>
 								</td>
@@ -152,13 +253,11 @@
 						</table>
 					</td>
 					<td>
-						<table style="padding-left:20px;margin-top:10px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td><i class="fas fa-history fa-lg fa-fw"></i>&ensp;Blocktime</td>
 								<td class="data">
 									<input disabled="true" id="data_shares" style="width:100%" type="text" value="0"/>
 								</td>
@@ -166,13 +265,11 @@
 						</table>
 					</td>
 					<td>
-						<table style="padding-left:20px;margin-top:10px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td><i class="fas fa-users fa-lg fa-fw"></i>&ensp;Workers</td>
 								<td class="data">
 									<input disabled="true" id="data_conn" style="width:calc(100% - 12px)" type="text" value="0"/>
 								</td>
@@ -181,46 +278,33 @@
 					</td>
 				</tr>
 				<tr>
-
 					<td>
-						<table style="padding-left:0px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+						<table class="table-header" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 93px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td><i class="fas fa-chart-network fa-lg fa-fw"></i>&ensp;Network</td>
-								<td class="data">
-									<input disabled="true" id="data_diff" style="width:100%" type="text"/>
-								</td>
+								<td><i class="fas fa-tachometer-alt-fast fa-lg fa-fw"></i>&ensp;Network Graph Rate</td>
 							</tr>
 						</table>
 					</td>
 					<td>
-						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+						<table class="table-header table-header2" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-unlock fa-lg fa-fw"></i>&ensp;Difficulty</td>
-								<td class="data">
-									<input disabled="true" id="data_diff" style="width:100%" type="text"/>
-								</td>
 							</tr>
 						</table>
 					</td>
 					<td>
-						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+						<table class="table-header table-header2" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 100px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td><i class="fas fa-bars fa-lg fa-fw"></i>&ensp;Height</td>
-								<td class="data">
-									<input disabled="true" id="data_height" style="width:calc(100% - 12px)" type="text"/>
-								</td>
+								<td><i class="fas fa-bars fa-lg fa-fw"></i>&ensp;Blockchain Height</td>
 							</tr>
 						</table>
 					</td>
@@ -229,13 +313,11 @@
 					<td>
 						<table style="padding-left:0px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 93px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td><i class="fas fa-money-bill-alt fa-lg fa-fw"></i>&ensp;Reward</td>
 								<td class="data">
-									<input disabled="true" id="data_reward" style="width:100%" type="text"/>
+									<input disabled="true" value="0" id="data_diff" style="width:100%" type="text"/>
 								</td>
 							</tr>
 						</table>
@@ -243,15 +325,11 @@
 					<td>
 						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 125px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td>
-									<span class="reset"><a href="#"><span class="toggle"></span>&ensp;Remote Node&ensp;<i class="fas fa-broadcast-tower"></i></a></span>
-								</td>
-								<td>
-									
+								<td class="data">
+									<input disabled="true" value="0" id="data_diff" style="width:100%" type="text"/>
 								</td>
 							</tr>
 						</table>
@@ -259,23 +337,90 @@
 					<td>
 						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: 110px">
 								<col style="width: *">
 							</colgroup>
 							<tr>
-								<td>
-									<span class="reset"><a href="#">Reset Data&ensp;<i class="fas fa-redo fa-flip-horizontal"></i></a></span>
+								<td class="data">
+									<input disabled="true" value="0" id="data_height" style="width:calc(100% - 12px)" type="text"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table class="table-header" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: *">
+							</colgroup>
+							<tr>
+								<td><i class="fas fa-money-bill-alt fa-lg fa-fw"></i>&ensp;Last Reward</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table class="table-header table-header2" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: *">
+							</colgroup>
+							<tr>
 								<td>
 								</td>
 							</tr>
 						</table>
 					</td>
-
+					<td>
+						<table class="table-header table-header2" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: *">
+							</colgroup>
+							<tr>
+								<td>
+								<td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table style="padding-left:0px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: *">
+							</colgroup>
+							<tr>
+								<td class="data">
+									<input disabled="true" value="0" id="data_reward" style="width:100%" type="text"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: *">
+							</colgroup>
+							<tr>
+								<td>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
+							<colgroup>
+								<col style="width: *">
+							</colgroup>
+							<tr>
+								<td>
+								</td>
+							</tr>
+						</table>
+					</td>
 				</tr>
 			</table>
 
 			<div class="tab">
-			<button class="tablinks" onclick="openTab(event, 'tablog')">Log&ensp;<i class="fas fa-scroll"></i></button>
+			<button class="tablinks tablinks1" onclick="openTab(event, 'tablog')">Log&ensp;<i class="fas fa-scroll"></i></button>
 			<button class="tablinks" onclick="openTab(event, 'tabworker')">Worker&ensp;<i class="fas fa-user-hard-hat"></i></button>
 			<button class="tablinks" onclick="openTab(event, 'tabblocks')">Blocks&ensp;<i class="fas fa-cubes"></i></button>
 			<button class="tablinks" onclick="openTab(event, 'tabhelp')">Help&ensp;<i class="fas fa-life-ring"></i></button>
@@ -304,6 +449,17 @@
 		</div>
 		
 		<script>
+			// Add active class to the current button (highlight it)
+			var header = document.getElementById("myDIV");
+			var btns = header.getElementsByClassName("btn");
+			for (var i = 0; i < btns.length; i++) {
+  			btns[i].addEventListener("click", function() {
+  			var current = document.getElementsByClassName("active");
+  			current[0].className = current[0].className.replace(" active", "");
+  			this.className += " active";
+  			});
+			}
+
 			var electron = require('electron');
 			var loglines = [];
 			function updateData() { 
