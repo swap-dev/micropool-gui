@@ -10,7 +10,7 @@ body {
     background-image:url('logo/swap_logo_white.png');
     background-repeat:no-repeat;
     background-size:99%;
-    background-position: center 7rem; 
+    background-position: center 9rem; 
     position:fixed !important;
     position:absolute;
     top:0;
@@ -62,7 +62,7 @@ td {
     padding-left: 15px;
 }
 .table-header-top {
-    margin-top: 20px;
+    margin-top: 0px;
 }
 div {
     font-family: Verdana, Geneva, sans-serif;
@@ -156,13 +156,13 @@ input, button, textarea, :focus {
     background-color: #151933;
 }
 
-.tab button.active, .tab .active {
+.tab button.active {
     color: #ddd;
     background-color: #151933;
 }
 
 .tabcontent {
-    height:calc(100% - 540px);
+    height:calc(100% - 455px);
     display: none;
     padding: 0px 0px;
     min-width:30rem;
