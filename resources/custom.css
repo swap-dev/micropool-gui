@@ -77,7 +77,7 @@ div {
 }
 .data input {
     background-color: transparent;
-    color: #ddd;
+    color: #a3acde;
     font-size: 2rem;
     font-family: Verdana, Geneva, sans-serif;
     border:0;
@@ -95,7 +95,7 @@ input {
     border-radius: 0.25rem;
 }
 span {
-    color:#ddd;
+    color:#2e3880;
 }
 :not(input):not(textarea),
 :not(input):not(textarea)::after,
@@ -130,9 +130,9 @@ input, button, textarea, :focus {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    border: 2px solid #151933;
+    border: 2px solid transparent;
     border-bottom:0px;
-    padding: 0.55rem 1.8rem;
+    padding: 0.5rem 1rem;
     font-size: .8rem;
     line-height: 1;
     border-radius: 0.25rem;
@@ -144,7 +144,7 @@ input, button, textarea, :focus {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     color: #a3acde;
-    background-color: #151933;
+    background-color: transparent;
     background-image: none;
     margin-left:.5rem;
 }
@@ -154,15 +154,19 @@ input, button, textarea, :focus {
 
 .tab button:hover {
     background-color: #151933;
+    border: 2px solid transparent;
+    border-bottom:0px;
 }
 
 .tab button.active {
-    color: #ddd;
+    color: #a3acde;
     background-color: #151933;
+    border: 2px solid transparent;
+    border-bottom:0px;
 }
 
 .tabcontent {
-    height:calc(100% - 455px);
+    height:calc(100% - 453px);
     display: none;
     padding: 0px 0px;
     min-width:30rem;
@@ -229,7 +233,7 @@ div#help {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     color: #a3acde;
-    background-color: #1d244a;
+    background-color: transparent;
     background-image: none;
     cursor:pointer;
 }
@@ -239,12 +243,12 @@ div#help {
     border: 2px solid #1d244a;
 }
 .reset button:active {
-    color: #ddd;
-    background-color: #1d244a;
+    color: #a3acde;
+    background-color: transparent;
     border: 2px solid #1d244a;
 }
 .reset button.active {
-    color: #ddd;
+    color: #a3acde;
     background-color: #1d244a;
     border: 2px solid #1d244a;
 }
@@ -289,10 +293,11 @@ div#help {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     color: #a3acde;
-    background-color: #1d244a;
+    background-color: transparent;
     background-image: none;
     cursor:pointer;
 }
 .active, .btn:hover {
-    color: #ddd;
+    color: #a3acde;
+    background-color: #1d244a;
 }
