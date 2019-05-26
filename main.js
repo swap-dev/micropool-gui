@@ -438,7 +438,8 @@ function createWindow () {
 							server.listen(global.poolconfig.poolport,'0.0.0.0');
 							logger.info("start swap micropool, port "+global.poolconfig.poolport);
 						});
-						setInterval(function(){updateJob('timer');}, 100);}
+						//setInterval(function(){updateJob('timer');}, 100);
+					}
 					});
 		});
 	});
