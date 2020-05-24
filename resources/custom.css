@@ -1,57 +1,107 @@
+body {
+    background-color:#1d244a;
+}
 #body {
     margin:0;
+    margin-bottom:1rem;
     padding-left:20px;
     padding-right:20px;
     background-color:#1d244a;
     background-image:url('logo/swap_logo_white.png');
     background-repeat:no-repeat;
-    background-size:auto 300px;
-    background-position:center 5%;
+    background-size:99%;
+    background-position: center 9rem; 
     position:fixed !important;
     position:absolute;
     top:0;
     right:0;
     bottom:0;
     left:0;
+    min-width:48.5rem;
 }
 p {
-    font-family:Verdana, Geneva, sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
+}
+td {
+    vertical-align: text-bottom;
+}
+.table-style {
+    min-width:30rem;
+    max-width:100%;
+    margin-top:0px;
+    margin-bottom:20px;
+    width:100%;
+    table-layout: fixed;
+    border:0;
+}
+.table-header {
+    margin-top: 20px;
+    width: 100%;
+    table-layout: fixed;
+    border: 0;
+    font-size: 1em;
+    line-height: 1.5em;
+    font-weight: 600;
+}
+.table-header2 {
+    margin-left: 20px;
+}
+.table-input-top {
+    margin-top: 20px;
+    width: 100%;
+    table-layout: fixed;
+    border: 0;
+    font-size: 1em;
+    line-height: 1.5em;
+    font-weight: 600;
+}
+.dashboard .table-input-top td {
+    padding-left:5px;
+}
+.table-input-top2 {
+    padding-left: 15px;
+}
+.table-header-top {
+    margin-top: 0px;
 }
 div {
-    font-family:Verdana, Geneva, sans-serif;
-    font-size:13px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size:.8rem;
     color: #a3acde;
     background-color:#151933;
 }
-div#log, div#workers, div#blocks {
-    font-family:"Courier New", Courier, monospace;
-    color:#7edeee;
-    background-color:#151933;
-    border:2px solid #2e3880;
-    border-radius: 0.25rem;
+.data {
+    font-size: .8rem;
+    background-color: transparent;
+    border:0;
 }
 .data input {
-    background-color:#1d244a;
-    color: #76baf0;
+    background-color: transparent;
+    color: #a3acde;
+    font-size: 2rem;
+    font-family: Verdana, Geneva, sans-serif;
+    border:0;
+    border-bottom:0px solid #151933;
+    padding:0px;
 }
 input {
-    font-family:"Courier New", Courier, monospace;
-    border:2px solid #2e3880;
-    font-size:12px;
+    font-family: Verdana, Geneva, sans-serif;
+    border: 0px solid #1d244a;
+    font-size: .8rem;
+    line-height: 1rem;
     padding:5px;
-    color:#ddd;
-    background-color:#151933;
+    color:#a3acde;
+    background-color:#1d244a;
     border-radius: 0.25rem;
 }
 span {
-    color:#a561e5;
+    color:#2e3880;
 }
 :not(input):not(textarea),
 :not(input):not(textarea)::after,
 :not(input):not(textarea)::before {
     -webkit-user-select:none;
     user-select:none;
-    cursor:default;
 }
 input, button, textarea, :focus {
     outline:none; 
@@ -72,7 +122,7 @@ input, button, textarea, :focus {
 
 .tab button {
     display: inline-block;
-    font-weight: 400;
+    font-weight: 600;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -80,10 +130,10 @@ input, button, textarea, :focus {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    border: 2px solid #2e3880;
+    border: 2px solid transparent;
     border-bottom:0px;
-    padding: 0.55rem 1.8rem;
-    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: .8rem;
     line-height: 1;
     border-radius: 0.25rem;
     border-bottom-right-radius:0;
@@ -96,19 +146,158 @@ input, button, textarea, :focus {
     color: #a3acde;
     background-color: transparent;
     background-image: none;
-    margin-left:1rem;
+    margin-left:.5rem;
+}
+.tab .tablinks1 {
+    margin-left:0rem;
 }
 
 .tab button:hover {
-    background-color: #2e3880;
+    background-color: #151933;
+    border: 2px solid transparent;
+    border-bottom:0px;
 }
 
 .tab button.active {
-    background-color: #2e3880;
+    color: #a3acde;
+    background-color: #151933;
+    border: 2px solid transparent;
+    border-bottom:0px;
 }
 
 .tabcontent {
-    height:calc(100% - 290px);
+    height:calc(100% - 453px);
     display: none;
     padding: 0px 0px;
+    min-width:30rem;
+    max-width:100%;
+}
+
+::-webkit-scrollbar {
+    width: 1em;
+}
+
+::-webkit-scrollbar-track {
+    background: #151933; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2e3880; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2e3880; 
+}
+
+div#log, 
+div#workers, 
+div#blocks, 
+div#help {
+    font-family:"Courier New", Courier, monospace;
+    color:#a3acde;
+    background-color:#151933;
+    border:2px solid #151933;
+    border-radius: 0.25rem;
+    padding:5px;
+    height:100%;
+    overflow: auto;
+}
+.data_gps input {
+    font-family: Verdana, Geneva, sans-serif;
+    background-color: transparent;
+    border:0;
+    font-size:2rem;
+}
+.data_gps {
+    font-size:2rem;
+}
+.reset button {
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 2px solid #1d244a;
+    padding: 0.2rem .4rem;
+    font-size: .8rem;
+    line-height: .8;
+    border-radius: 0.25rem;
+    -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    color: #a3acde;
+    background-color: transparent;
+    background-image: none;
+    cursor:pointer;
+}
+.reset button:hover {
+    color: #a3acde;
+    background-color: #1d244a;
+    border: 2px solid #1d244a;
+}
+.reset button:active {
+    color: #a3acde;
+    background-color: transparent;
+    border: 2px solid #1d244a;
+}
+.reset button.active {
+    color: #a3acde;
+    background-color: #1d244a;
+    border: 2px solid #1d244a;
+}
+.table-style .top-line td {
+    padding-bottom: 5px;
+    border-bottom: 4px solid #151933;
+}
+.table-style .no-top-line td {
+    border-bottom: 0;
+}
+.dashboard td {
+    background-color:#151933;
+}
+.right-border1 {
+    border-right:4px solid #151933;
+}
+.bottom-left-corner {
+    border-bottom-left-radius:0.25rem;
+}
+.bottom-right-corner {
+    border-bottom-right-radius:0.25rem;
+}
+.btn {
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 2px solid #1d244a;
+    padding: 0.2rem .4rem;
+    font-size: .8rem;
+    line-height: .8;
+    border-radius: 0.25rem;
+    -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    color: #a3acde;
+    background-color: transparent;
+    background-image: none;
+    cursor:pointer;
+}
+.active, .btn:hover {
+    color: #a3acde;
+    background-color: #1d244a;
 }
