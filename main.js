@@ -167,7 +167,7 @@ function updateJob(reason,callback){
 			current_blob     = result.blocktemplate_blob;
 			current_hashblob = result.blockhashing_blob.slice(0,-16);	
 			current_height   = result.height;
-            current_reward   = result.expected_reward / Math.pow (10,12);
+			current_reward   = result.expected_reward / Math.pow (10,12);
 			
 			jobcounter++;
 
@@ -175,8 +175,8 @@ function updateJob(reason,callback){
 
 			mainWindow.webContents.send('get-reply', ['data_diff',result.difficulty]);
 			mainWindow.webContents.send('get-reply', ['data_height',result.height]);
-            mainWindow.webContents.send('get-reply', ['data_netgraphrate', (current_target / 1500 * 32).toFixed(2) + 'KGps' ]);
-            mainWindow.webContents.send('get-reply', ['data_reward',current_reward.toFixed(2) + ' XWP']);
+			mainWindow.webContents.send('get-reply', ['data_netgraphrate', (current_target / 1500 * 32).toFixed(2) + 'KGps' ]);
+			mainWindow.webContents.send('get-reply', ['data_reward',current_reward.toFixed(2) + ' XWP']);
 
 		
 			for (var minerId in connectedMiners){
@@ -358,24 +358,24 @@ function handleClient(data,miner){
 			shares+=parseFloat(miner.difficulty);
 			jobshares+=parseFloat(miner.difficulty);
 			mainWindow.webContents.send('get-reply', ['data_shares',shares]);
-            mainWindow.webContents.send('get-reply', ['data_currenteffort',(jobshares/current_target*100).toFixed(2)+'%']);
-            
-            var totalgps=0;
-            for (var minerId in connectedMiners){
-                var miner2 = connectedMiners[minerId];
-                totalgps+=miner2.gps;
-            }
-            var etaTime = new Date(0);
-            if (totalgps)
-            {
-                etaTime.setSeconds(parseInt(current_target/totalgps * 32));
-            }
-            else
-            {
-                etaTime.setSeconds(0)
-            }
-            mainWindow.webContents.send('get-reply', ['data_blocketa', etaTime.toISOString().substr(11, 8)+'s']);
-            mainWindow.webContents.send('get-reply', ['data_revenue', ((totalgps * 86400 / current_target) * (current_reward / 32)).toFixed(2) +' xwp']);
+			mainWindow.webContents.send('get-reply', ['data_currenteffort',(jobshares/current_target*100).toFixed(2)+'%']);
+			
+			var totalgps=0;
+			for (var minerId in connectedMiners){
+				var miner2 = connectedMiners[minerId];
+				totalgps+=miner2.gps;
+			}
+			var etaTime = new Date(0);
+			if (totalgps)
+			{
+				etaTime.setSeconds(parseInt(current_target/totalgps * 32));
+			}
+			else
+			{
+				etaTime.setSeconds(0)
+			}
+			mainWindow.webContents.send('get-reply', ['data_blocketa', etaTime.toISOString().substr(11, 8)+'s']);
+			mainWindow.webContents.send('get-reply', ['data_revenue', ((totalgps * 86400 / current_target) * (current_reward / 32)).toFixed(2) +' xwp']);
 
 			logger.info('share ('+miner.login+') '+miner.difficulty+' ('+hashrate(miner)+')');
 			return miner.respose('ok',null,request);
@@ -400,7 +400,7 @@ function handleClient(data,miner){
 }
 
 var ctrl_server = net.createServer(function (localsocket) {
-    updateJob('ctrlport');
+	updateJob('ctrlport');
 });
 ctrl_server.listen(global.poolconfig.ctrlport,'127.0.0.1');
 
