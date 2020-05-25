@@ -451,6 +451,7 @@ function createWindow () {
 		if(arg[0] === "daemonport") global.poolconfig.daemonport=arg[1];
 		if(arg[0] === "daemonhost") global.poolconfig.daemonhost=arg[1];
 		if(arg[0] === "poolport") global.poolconfig.poolport=arg[1];
+		if(arg[0] === "ctrlport") global.poolconfig.ctrlport=arg[1];
 
 		storage.set(arg[0],arg[1]);
 	});
@@ -469,8 +470,9 @@ function createWindow () {
 					if(arg0 === "daemonport") global.poolconfig.daemonport=object;
 					if(arg0 === "daemonhost") global.poolconfig.daemonhost=object;
 					if(arg0 === "poolport") global.poolconfig.poolport=object;
+					if(arg0 === "ctrlport") global.poolconfig.ctrlport=object;
 					count++;
-					if(count == 4) {
+					if(count == 5) {
 						updateJob('init',function(){
 							server.listen(global.poolconfig.poolport,'0.0.0.0');
 							logger.info("start swap micropool, port "+global.poolconfig.poolport);
