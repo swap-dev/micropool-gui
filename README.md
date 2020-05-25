@@ -3,6 +3,8 @@ Minimal Swap Pool Windows GUI
 
 ![screenshot](https://cdn.discordapp.com/attachments/541411408953344002/568984595505086475/Capture7.PNG)
 
+How to Guide: https://github.com/swap-dev/swap/wiki/Swap-Micropool-How-to-Guide
+
 To run micropool-gui as a nodejs/electronjs app:
 
     $ npm install electron -g
