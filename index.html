@@ -430,8 +430,8 @@
 					<h1>Welcome to Swap Micropool!</h1>
 					<div id="myDIV">
 					<i class="fas fa-broadcast-tower fa-lg fa-fw"></i>&ensp;Default Presets (Mainnet):&ensp;
-					<button class="btn" onclick="setLocalHost()">Local Node&ensp;<i class="fas fa-map-marker-alt"></i></button>
-					<button class="btn" onclick="setRemoteNode()">Remote Node&ensp;<i class="fas fa-map-marked-alt"></i></button>
+					<button class="btn" onclick="setNodePreset('localmainnet')">Local Node&ensp;<i class="fas fa-map-marker-alt"></i></button>
+					<button class="btn" onclick="setNodePreset('remotemainnet')">Remote Node&ensp;<i class="fas fa-map-marked-alt"></i></button>
 					</div>
 				</div>
 			</div>
@@ -490,15 +490,22 @@
 				document.getElementById('log').innerHTML=loglines.join('<br/>');
 			});
 			
-			function setLocalHost() {
-				document.getElementById('daemonhost').value="127.0.0.1";
-				document.getElementById('daemonport').value=19950;
+			function setNodePreset(type) {
+				if (type == "localmainnet")
+				{
+					document.getElementById('daemonhost').value="127.0.0.1";
+					document.getElementById('daemonport').value=19950;
+				}
+				else if (type == "remotemainnet")
+				{
+					document.getElementById('daemonhost').value="autonode.xwp.fyi";
+					document.getElementById('daemonport').value=19950;
+				}
+				document.getElementById('poolport').value=14650;
+				document.getElementById('ctrlport').value=14651;
+
 				updateData();
-			}
-			function setRemoteNode() {
-				document.getElementById('daemonhost').value="autonode.xwp.fyi";
-				document.getElementById('daemonport').value=19950;
-				updateData();
+				tablinks[3].className += " active"; //re-highlight help tab on click
 			}
 			function resetData() {
 				ipcRenderer.send('run', ['resetData']);
