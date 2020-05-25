@@ -107,8 +107,8 @@
 								<td>
 									<div id="myDIV">
 									<i class="fas fa-broadcast-tower fa-lg fa-fw"></i>&ensp;Remote Node&ensp;
-									<button class="btn">On&ensp;<i class="fas fa-lightbulb-on"></i></button>
-									<button class="btn active">Off&ensp;<i class="fas fa-lightbulb-slash"></i></button>
+									<button class="btn" onclick="setRemoteNode()">On&ensp;<i class="fas fa-lightbulb-on"></i></button>
+									<button class="btn active" onclick="setLocalHost()">Off&ensp;<i class="fas fa-lightbulb-slash"></i></button>
 									</div>
 								</td>
 							</tr>
@@ -482,6 +482,17 @@
 				if (loglines.length > 100) loglines.pop();
 				document.getElementById('log').innerHTML=loglines.join('<br/>');
 			});
+			
+			function setLocalHost() {
+				document.getElementById('daemonhost').value="127.0.0.1";
+				document.getElementById('daemonport').value=19950;
+				updateData();
+			}
+			function setRemoteNode() {
+				document.getElementById('daemonhost').value="autonode.xwp.fyi";
+				document.getElementById('daemonport').value=19950;
+				updateData();
+			}
 		</script>
 	</body>
 </html>
