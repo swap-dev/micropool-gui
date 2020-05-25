@@ -105,11 +105,7 @@
 							</colgroup>
 							<tr class="no-top-line">
 								<td>
-									<div id="myDIV">
-									<i class="fas fa-broadcast-tower fa-lg fa-fw"></i>&ensp;Remote Node&ensp;
-									<button class="btn" onclick="setRemoteNode()">On&ensp;<i class="fas fa-lightbulb-on"></i></button>
-									<button class="btn active" onclick="setLocalHost()">Off&ensp;<i class="fas fa-lightbulb-slash"></i></button>
-									</div>
+
 								</td>
 							</tr>
 						</table>
@@ -429,7 +425,12 @@
 
 			<div id="tabhelp" class="tabcontent">
 				<div id="help">
-					Welcome to Swap Micropool
+					<h1>Welcome to Swap Micropool!</h1>
+					<div id="myDIV">
+					<i class="fas fa-broadcast-tower fa-lg fa-fw"></i>&ensp;Default Presets (Mainnet):&ensp;
+					<button class="btn" onclick="setLocalHost()">Local Node&ensp;<i class="fas fa-map-marker-alt"></i></button>
+					<button class="btn" onclick="setRemoteNode()">Remote Node&ensp;<i class="fas fa-map-marked-alt"></i></button>
+					</div>
 				</div>
 			</div>
 
