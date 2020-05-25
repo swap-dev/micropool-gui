@@ -120,7 +120,7 @@ function resetData()
 	jobshares=0;
 	mainWindow.webContents.send('get-reply', ['data_shares', 0]);
 	mainWindow.webContents.send('get-reply', ['data_blocks', 0]);
-	mainWindow.webContents.send('get-reply', ['data_currenteffort', 0]);
+	mainWindow.webContents.send('get-reply', ['data_currenteffort', "0.00%"]);
 }
 
 function nonceCheck(miner,nonce) {
