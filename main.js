@@ -152,7 +152,7 @@ function hashrate(miner) {
 		workertxt+=miner2.login+' '+miner2.agent+' '+miner2.pass+' '+miner2.difficulty+' '+miner2.shares+' '+miner2.gps.toFixed(2)+'<br/>';
 	}
 	mainWindow.webContents.send('workers', workertxt);
-	mainWindow.webContents.send('get-reply', ['data_gps',total.toFixed(2)]);
+	mainWindow.webContents.send('get-reply', ['data_gps',total.toFixed(2)+" Gps"]);
 
 	return 'rig:'+miner.pass+' '+hr.toFixed(2)+' gps';
 		
@@ -188,7 +188,7 @@ function updateJob(reason,callback){
 
 			mainWindow.webContents.send('get-reply', ['data_diff',result.difficulty]);
 			mainWindow.webContents.send('get-reply', ['data_height',result.height]);
-			mainWindow.webContents.send('get-reply', ['data_netgraphrate', (current_target / 15000 * 32).toFixed(2) + 'KGps' ]);
+			mainWindow.webContents.send('get-reply', ['data_netgraphrate', (current_target / 15000 * 32).toFixed(2) + ' KGps' ]);
 			mainWindow.webContents.send('get-reply', ['data_reward',current_reward.toFixed(2) + ' XWP']);
 
 		
@@ -242,7 +242,7 @@ function Miner(id,socket){
 			workertxt+=miner2.login+' '+miner2.agent+' '+miner2.pass+' '+miner2.difficulty+' '+miner2.shares+' '+miner2.gps.toFixed(2)+'<br/>';
 		}
 		mainWindow.webContents.send('workers', workertxt);
-		mainWindow.webContents.send('get-reply', ['data_gps',total.toFixed(2)]);
+		mainWindow.webContents.send('get-reply', ['data_gps',total.toFixed(2)+" Gps"]);
 		socket.end();
 	});
 
