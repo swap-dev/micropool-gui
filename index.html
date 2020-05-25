@@ -5,6 +5,12 @@
 		<link rel="stylesheet" href="resources/custom.css">
 		<link rel="stylesheet" href="resources/css/fa.css">
 		<script>
+			function init()
+			{
+				openTab(event,'tablog')
+				tablinks = document.getElementsByClassName("tablinks");
+				tablinks[0].className += " active";
+			}
 			function openTab(evt, cityName) {
 				var i, tabcontent, tablinks;
 
@@ -23,7 +29,7 @@
 			}
 		</script>
 	</head>
-	<body onload="openTab(event,'tablog')">
+	<body onload="init()">
 		<div id="body">
 			<table class="table-style" cellspacing="0" cellpadding="0">
 				<colgroup>
