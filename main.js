@@ -113,6 +113,16 @@ var jobcounter=0;
 var blockstxt  = "";
 var jobshares=0;
 
+function resetData()
+{
+	shares=0;
+	blocks=0;
+	jobshares=0;
+	mainWindow.webContents.send('get-reply', ['data_shares', 0]);
+	mainWindow.webContents.send('get-reply', ['data_blocks', 0]);
+	mainWindow.webContents.send('get-reply', ['data_currenteffort', 0]);
+}
+
 function nonceCheck(miner,nonce) {
 
 	if (miner.nonces.indexOf(nonce) !== -1) return false;
@@ -430,6 +440,10 @@ function createWindow () {
 	mainWindow.setMenu(null);
 
 	mainWindow.loadFile('index.html');
+
+	ipcMain.on('run',(event,arg) => {
+		if(arg[0] === "resetData") resetData();
+	});
 
 	ipcMain.on('set',(event,arg) => {
 

@@ -122,7 +122,7 @@
 							<tr class="no-top-line">
 								<td class="reset">
 									<i class="fas fa-chart-bar fa-lg fa-fw"></i>&ensp;Data&ensp;
-									<button>Reset&ensp;<i class="fas fa-redo fa-flip-horizontal"></i></button>
+									<button onclick="resetData()">Reset&ensp;<i class="fas fa-redo fa-flip-horizontal"></i></button>
 								</td>
 							</tr>
 						</table>
@@ -327,7 +327,7 @@
 							</colgroup>
 							<tr>
 								<td class="data">
-									<input disabled="true" value="0%" id="data_currenteffort" style="width:100%" type="text"/>
+									<input disabled="true" value="0.00%" id="data_currenteffort" style="width:100%" type="text"/>
 								</td>
 							</tr>
 						</table>
@@ -492,6 +492,9 @@
 				document.getElementById('daemonhost').value="autonode.xwp.fyi";
 				document.getElementById('daemonport').value=19950;
 				updateData();
+			}
+			function resetData() {
+				ipcRenderer.send('run', ['resetData']);
 			}
 		</script>
 	</body>
