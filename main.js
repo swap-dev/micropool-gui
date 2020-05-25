@@ -109,18 +109,21 @@ var current_hashblob  = "";
 var previous_hashblob = "";
 var current_prevhash  = "";
 var connectedMiners   = {};
-var jobcounter=0;
-var blockstxt  = "";
-var jobshares=0;
+var jobcounter        = 0;
+var blockstxt         = "";
+var jobshares         = 0;
+var totalEffort       = 0;
 
 function resetData()
 {
 	shares=0;
 	blocks=0;
 	jobshares=0;
+	totalEffort=0;
 	mainWindow.webContents.send('get-reply', ['data_shares', 0]);
 	mainWindow.webContents.send('get-reply', ['data_blocks', 0]);
 	mainWindow.webContents.send('get-reply', ['data_currenteffort', "0.00%"]);
+	mainWindow.webContents.send('get-reply', ['data_averageeffort', "0.00%"]);
 }
 
 function nonceCheck(miner,nonce) {
@@ -360,6 +363,8 @@ function handleClient(data,miner){
 				blockstxt+=(current_height-1)+' '+((jobshares/current_target*100).toFixed(2))+'%<br/>';
 				jobshares=0;
 				mainWindow.webContents.send('blocks', blockstxt);
+				totalEffort+=jobshares/current_target;
+				mainWindow.webContents.send('get-reply', ['data_averageeffort',(totalEffort/blocks*100).toFixed(2)+'%']);
 			});
 		}
 		
