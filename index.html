@@ -429,7 +429,7 @@
 			<button class="tablinks tablinks1" onclick="openTab(event, 'tablog')">Log&ensp;<i class="fas fa-scroll"></i></button>
 			<button class="tablinks" onclick="openTab(event, 'tabworker')">Worker&ensp;<i class="fas fa-user-hard-hat"></i></button>
 			<button class="tablinks" onclick="openTab(event, 'tabblocks')">Blocks&ensp;<i class="fas fa-cubes"></i></button>
-			<button class="tablinks" onclick="openTab(event, 'tabhelp')">Help&ensp;<i class="fas fa-life-ring"></i></button>
+			<button class="tablinks tablinks2" onclick="openTab(event, 'tabhelp')">Help&ensp;<i class="fas fa-life-ring"></i></button>
 			</div>
 
 			<div id="tablog" class="tabcontent">
@@ -451,10 +451,32 @@
 				<div id="help">
 					<h1>Welcome to Swap Micropool!</h1>
 					<div id="myDIV">
-					<i class="fas fa-broadcast-tower fa-lg fa-fw"></i>&ensp;Default Presets (Mainnet):&ensp;
-					<button class="btn" onclick="setNodePreset('localmainnet')">Local Node&ensp;<i class="fas fa-map-marker-alt"></i></button>
-					<button class="btn" onclick="setNodePreset('remotemainnet')">Remote Node&ensp;<i class="fas fa-map-marked-alt"></i></button>
+						<i class="fas fa-broadcast-tower fa-lg fa-fw"></i>&ensp;Default Presets (Mainnet):&ensp;
+						<button class="btn" onclick="setNodePreset('localmainnet')">Local Node&ensp;<i class="fas fa-map-marker-alt"></i></button>
+						<button class="btn" onclick="setNodePreset('remotemainnet')">Remote Node&ensp;<i class="fas fa-map-marked-alt"></i></button>
 					</div>
+					<h2>Micropool Setup</h2>
+					<p>
+						<ol>
+							<li>Run the latest Swap Daemon and Sync. <a href="https://github.com/swap-dev/swap/releases/latest" target="_blank">Latest Swap Daemon</a></li>
+							<li>Enter a standard wallet address. (mining to exchanges is not supported)</li>
+							<li>Change the daemon IP address if you are running the daemon on another machine.</li>
+							<li>Close the Micropool and reopen to save settings.</li>
+						</ol>
+					</p>
+					<h2>Miner Setup</h2>
+					<p>
+						<ol>
+							<li>Update the IP address to the machine running the Micropool.</li>
+							<li>Set the port to 14650.</li>
+							<li>Add worker names for multiple rigs.</li>
+						</ol>
+					</p>
+					<h2>Troubleshooting</h2>
+					<h3>Deamon connection</h3>
+					<p>The error "<i>connect ECONNREFUSED x.x.x.x:19950</i>" is indicate that the daemon is likely not synced to the network; restart the micropool when the deamon is fully synchronized.</p>
+					<h3></h3>
+					<p</p>
 				</div>
 			</div>
 
