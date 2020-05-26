@@ -449,7 +449,7 @@
 
 			<div id="tabhelp" class="tabcontent">
 				<div id="help">
-					<h1>Welcome to Swap Micropool!</h1>
+					<h1>Welcome to the Swap Micropool!</h1>
 					<div id="myDIV">
 						<i class="fas fa-broadcast-tower fa-lg fa-fw"></i>&ensp;Default Presets (Mainnet):&ensp;
 						<button class="btn" onclick="setNodePreset('localmainnet')">Local Node&ensp;<i class="fas fa-map-marker-alt"></i></button>
@@ -475,7 +475,7 @@
 							</li>
 								<ul>
 									<li>Use 127.0.0.1 if the daemon is on the same machine as micropool (recommended).</li>
-									<li>Use the ip assigned by the router if on the same network.</li>
+									<li>Use the IP assigned by the router if on the same network.</li>
 								</ul>
 							<li>
 								Optionally, download and set up the on-block notify script for the daemon. The default Ctrl-Port will listen for this script.
@@ -500,7 +500,9 @@
 							</li>
 							<li>
 								Optionally, append a number prefixed by a dot after the username (e.g. workername.10) to set the share difficulty for the rig. 
-								Difficulty defaults to 1 when left unset.
+								Difficulty defaults to 1 when left unset. As a general guideline set difficulty 1:1 with your miners graphrate. Matching graphrate
+								to difficulty will yield 32 seconds per share. Difficulty set between 1x and 2x graphrate is a good setting. 
+								Although, it does not matter for the micropool because it either finds a block or it does not, share submission is superficial.
 							</li>
 						</ol>
 					</p>
