@@ -24,16 +24,21 @@ p, h1, h2, h3, ol, ul {
 }
 p {
     margin-left:20px;
+    line-height:20px;
 }
 td {
-    vertical-align: text-bottom;
+    vertical-align:text-bottom;
 }
 li {
     margin: 4px 0;
+    line-height:20px;
+}
+ol ul {
+    list-style-type:disc;
 }
 a, a:visited, a:active, a:hover {
     color: #a3acde;
-    text-decoration: none;
+    text-decoration:none;
     font-weight:bold;
 }
 .table-style {
