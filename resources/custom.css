@@ -19,11 +19,19 @@ body {
     left:0;
     min-width:48.5rem;
 }
-p {
+p, h1, h2, h3, ol, ul {
     font-family: Verdana, Geneva, sans-serif;
 }
 td {
     vertical-align: text-bottom;
+}
+li {
+    margin: 4px 0;
+}
+a, a:visited, a:active, a:hover {
+    color: #a3acde;
+    text-decoration: none;
+    font-weight:bold;
 }
 .table-style {
     min-width:30rem;
@@ -130,12 +138,14 @@ input, button, textarea, :focus {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    border: 2px solid transparent;
+    border: 0px solid #151933;
+    border-left:0px solid #151933;
+    border-right:0px solid #151933;
     border-bottom:0px;
     padding: 0.5rem 1rem;
     font-size: .8rem;
     line-height: 1;
-    border-radius: 0.25rem;
+    border-radius: 0rem;
     border-bottom-right-radius:0;
     border-bottom-left-radius:0;
     -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -146,23 +156,26 @@ input, button, textarea, :focus {
     color: #a3acde;
     background-color: transparent;
     background-image: none;
-    margin-left:.5rem;
+    margin-left:0rem;
 }
 .tab .tablinks1 {
     margin-left:0rem;
+    border-top-left-radius: 0.25rem;
+    border-left:0px solid #151933;
+}
+
+.tab .tablinks2 {
+    margin-left:0rem;
+    border-top-right-radius: 0.25rem;
+    border-right:0px solid #151933;
 }
 
 .tab button:hover {
     background-color: #151933;
-    border: 2px solid transparent;
-    border-bottom:0px;
 }
 
 .tab button.active {
-    color: #a3acde;
     background-color: #151933;
-    border: 2px solid transparent;
-    border-bottom:0px;
 }
 
 .tabcontent {
