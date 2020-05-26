@@ -223,6 +223,10 @@ div#help {
     height:100%;
     overflow: auto;
 }
+div#help :not(input):not(textarea){
+    -webkit-user-select:text;
+    user-select:text;
+}
 .data_gps input {
     font-family: Verdana, Geneva, sans-serif;
     background-color: transparent;
