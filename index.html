@@ -468,7 +468,7 @@
 								Obtain and enter a standard wallet address (prefixed with fh...).
 							</li>
 								<ul>
-									<li>Mining to exchanges are not supported.</li>
+									<li>Mining directly to exchange is not supported with the micropool.</li>
 								</ul>
 							<li>
 								Point the Daemon-Host to the IP or DNS address of the daemon.
@@ -490,7 +490,7 @@
 					<p>
 						<ol>
 							<li>
-								Point the pool or connection address to the machine running the micropool.
+								Point the pool or connection address to the IP address of the machine running the micropool.
 							</li>
 							<li>
 								Set the mining port to 14650.
@@ -509,7 +509,7 @@
 					
 					<h2>Troubleshooting</h2>
 					
-					<h3>Deamon connection</h3>
+					<h3>Deamon Connection</h3>
 					<p>
 						The error "<i>connect ECONNREFUSED x.x.x.x:19950</i>" indicates that micropool cannot connect to the Swap Daemon. Check that the Daemon-Host 
 						and Daemon-Port are entered correctly, and that there are no firewalls blocking the Daemon-Port. If the daemon is not located on the same machine 
