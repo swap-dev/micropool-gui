@@ -458,25 +458,53 @@
 					<h2>Micropool Setup</h2>
 					<p>
 						<ol>
-							<li>Run the latest Swap Daemon and Sync. <a href="https://github.com/swap-dev/swap/releases/latest" target="_blank">Latest Swap Daemon</a></li>
-							<li>Enter a standard wallet address. (mining to exchanges is not supported)</li>
-							<li>Change the daemon IP address if you are running the daemon on another machine.</li>
-							<li>Close the Micropool and reopen to save settings.</li>
+							<li>Run the latest Swap Daemon and allow it to fully sync.</li>
+								<ul>
+									<li><a href="https://github.com/swap-dev/swap/releases/latest" target="_blank">Latest Swap Daemon</a></li>
+								</ul>
+							<li>Obtain and enter your standard wallet address (prefixed with fh...). </li>
+								<ul>
+									<li>Mining to exchanges are not supported.</li>
+								</ul>
+							<li>Point the Daemon-Host to the IP or DNS address of your daemon.</li>
+								<ul>
+									<li>Use 127.0.0.1 if the daemon is on the same machine as Micropool (recommended).</li>
+									<li>Use the ip assigned by your router if on the same network.</li>
+								</ul>
+							<li>Optionally, download and set up the on-block notify script for the daemon. The default Ctrl-Port will listen for this script.</li>
+								<ul>
+									<li><a href="https://github.com/swap-dev/on-block-notify/releases/latest" target="_blank">Latest On-Block Notify</a></li>
+								</ul>
 						</ol>
 					</p>
 					<h2>Miner Setup</h2>
 					<p>
 						<ol>
-							<li>Update the IP address to the machine running the Micropool.</li>
-							<li>Set the port to 14650.</li>
-							<li>Add worker names for multiple rigs.</li>
+							<li>Point the pool or connection address to the machine running Micropool.</li>
+							<li>Set the mining port to 14650.</li>
+							<li>Set the username and password as preferred. These are used to identify your rigs in Micropool.</li>
+							<li>Optionally, append a number prefixed by a dot after your username (e.g. workername.10) to set the share difficulty for your rig. Difficulty defaults to 1 when left unset.</li>
 						</ol>
 					</p>
 					<h2>Troubleshooting</h2>
 					<h3>Deamon connection</h3>
-					<p>The error "<i>connect ECONNREFUSED x.x.x.x:19950</i>" is indicate that the daemon is likely not synced to the network; restart the micropool when the deamon is fully synchronized.</p>
-					<h3></h3>
-					<p</p>
+					<p>The error "<i>connect ECONNREFUSED x.x.x.x:19950</i>" indicates that Micropool cannot connect to the Swap Daemon. Check that the Daemon-Host and Daemon-Port is entered correctly, and that there are no firewall blocking the Daemon-Port. If the daemon is not located on the same machine as micropool, you must bind its rpc ip externally (e.g. swapd --rpc-bind-ip 0.0.0.0 --confirm-external-bind --restricted-rpc).</p>
+					<p>The error "<i>core is busy</i>" indicates that Swap Daemon has not yet fully synced. You'll not be able to connect your miner until it does so. If this error occurs intermittenly, then it means that the daemon is having a hard time maintaining connections with the Swap Network. Check your firewall settings for your Swap Daemon's p2p port.</p>
+					<h3>Miner Connection</h3>
+					<p>For "<i>No connection could be made because the target machine actively refused it</i>" and similar errors in your miner, make sure there are no errors in Micropool. Micropool will not accept any connections until it is fully ready. If there are no errors in Micropool, make sure the connection info in your miner is correct and that no firewall is blocking the Pool-Port.</p>
+					<h3>Mining Efficiency</h3>
+					<p>
+						For users who are finding abnormal number of orphan blocks or needing lots of efforts to find a block. Listed in order of importances and effiecacy:
+						<ul>
+							<li>Avoid mining to a public remote node! Public nodes are a shared resource, which will have a hard time serving new blocktemplates to Micropool in a timely manner. Expect a massive number of orphan block while mining directly to one of the more popular nodes! If for some reason you cannot run the Swap Daemon on your local network, setting up a private remote node on a vps is a much better alternative.</li>
+							<li>Ensure that your daemon is well connected to at least 15-20 peers to help distribute your found blocks throughout the network as quickly as possible. If your daemon have a hard time maintaining a good peer list, check and make sure that it is able to accept inbound connection on its p2p port. This will reduce the chance of having your block orphaned or even unintentionally forking onto its own private chain (i.e. multiple orphan blocks). If you still cannot maintain a good peer list, at least make sure that the peers you do have are fully synced (you can help get your peers up to speed by increasing your daemon's max upload speed).</li>
+							<li>Reduce ping time to your peers. Generally this means don't run your setup on satellite or cellular internet. If you're stuck with high latacy internet, expect a higher than normal orphan rate.
+							<li>Reduce ping time between Micropool, Swap Daemon, and Miner. Ideally, they should be on the same machine or local network. Having any part of your setup over the internet will impact mining effort and/or orphan rate due to communication delays.
+							<li>Setting up on-block notify will ensures that Micropool will always be ready when your daemon detects a new block on the network. This reduces the time wasted on mining a stale block that would be rejected by your daemon anyways. Without on-block notify, micropool will poll the daemon for new blocks every 0.1s (which is already a fairly agressive setting). These milliseconds of delay adds up, and is especially important when mining on Swap Network's 15s block timing. Expect a reduction of ~0.33% effort needed to find each block.</li>
+							<li>Prioritize your daemon's connection to seed nodes using --add-priority-node. Swap's seed nodes are dedicated servers optimized to handle hundreds of concurrent connections at a time. Your daemon will gain access to many of available Swap nodes with only 2 hops away when connected to one.</li>
+							<li>Prioritize your daemon's connection to major pools using --add-priority-node. By having a direct connection to the major pools, you not only receive their blocks faster, but they also receive your blocks faster too. By building on each other chain, the chance of orphan blocks decreases for everyone involved. The pool's daemon is usually located on the same ip as the mining address, but you can always ask the pool operator.</li>
+						</ul>
+					</p>
 				</div>
 			</div>
 

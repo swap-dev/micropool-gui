@@ -22,6 +22,9 @@ body {
 p, h1, h2, h3, ol, ul {
     font-family: Verdana, Geneva, sans-serif;
 }
+p {
+    margin-left:20px;
+}
 td {
     vertical-align: text-bottom;
 }
