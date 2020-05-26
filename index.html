@@ -574,17 +574,6 @@
 		</div>
 		
 		<script>
-			// Add active class to the current button (highlight it)
-			var header = document.getElementById("myDIV");
-			var btns = header.getElementsByClassName("btn");
-			for (var i = 0; i < btns.length; i++) {
-			btns[i].addEventListener("click", function() {
-			var current = document.getElementsByClassName("active");
-			current[0].className = current[0].className.replace(" active", "");
-			this.className += " active";
-			});
-			}
-
 			var electron = require('electron');
 			var loglines = [];
 			function updateData() { 
@@ -640,7 +629,6 @@
 				document.getElementById('ctrlport').value=14651;
 
 				updateData();
-				tablinks[3].className += " active"; //re-highlight help tab on click
 			}
 			function resetData() {
 				ipcRenderer.send('run', ['resetData']);
