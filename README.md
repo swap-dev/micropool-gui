@@ -1,7 +1,9 @@
 # micropool-gui
-Minimal Swap Pool Windows GUI
+Minimal Swap Pool
 
-![screenshot](https://cdn.discordapp.com/attachments/541411408953344002/568984595505086475/Capture7.PNG)
+![screenshot](https://cdn.discordapp.com/attachments/515039248915628032/715245603642277928/swap_micropool_v1_5.PNG)
+
+
 
 How to Guide: https://github.com/swap-dev/swap/wiki/Swap-Micropool-How-to-Guide
 
