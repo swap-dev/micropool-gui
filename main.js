@@ -449,9 +449,10 @@ function createWindow () {
 	ipcMain.on('run',(event,arg) => {
 		if(arg[0] === "resetData") resetData();
 	});
+	
+	var started=0
 
 	ipcMain.on('set',(event,arg) => {
-
 		if(arg[0] === "mining_address") global.poolconfig.mining_address=arg[1];
 		if(arg[0] === "daemonport") global.poolconfig.daemonport=arg[1];
 		if(arg[0] === "daemonhost") global.poolconfig.daemonhost=arg[1];
@@ -459,8 +460,19 @@ function createWindow () {
 		if(arg[0] === "ctrlport") global.poolconfig.ctrlport=arg[1];
 
 		storage.set(arg[0],arg[1]);
+		
+		//Alternative init since this ipcMain.on('set',...) codeblock runs after ipcMain.on('get',...) on a clean startup.
+		//therefore, no config in storage for the original init to work with on clean startup.
+		if(global.poolconfig.mining_address && global.poolconfig.daemonhost && global.poolconfig.daemonport && global.poolconfig.poolport && !started) 
+		{
+			started=1;
+			updateJob('init',function(){
+				server.listen(global.poolconfig.poolport,'0.0.0.0');
+				logger.info("start swap micropool, port "+global.poolconfig.poolport);
+			});
+			setInterval(function(){updateJob('timer');}, 100);
+		}
 	});
-
 
 	var count=0;
 
@@ -469,6 +481,7 @@ function createWindow () {
 		var arg0 = arg;
 		storage.has(arg0,function(error,haskey) {
 			if(!error && haskey)
+			{
 				storage.get(arg0,function(error,object) {
 					if(!error) sender.send('get-reply', [arg0,object]);
 					if(arg0 === "mining_address") global.poolconfig.mining_address=object;
@@ -477,13 +490,18 @@ function createWindow () {
 					if(arg0 === "poolport") global.poolconfig.poolport=object;
 					if(arg0 === "ctrlport") global.poolconfig.ctrlport=object;
 					count++;
-					if(count == 5) {
+					
+					if(count == 5 && !started) 
+					{
+						started=1;
 						updateJob('init',function(){
 							server.listen(global.poolconfig.poolport,'0.0.0.0');
 							logger.info("start swap micropool, port "+global.poolconfig.poolport);
 						});
-						setInterval(function(){updateJob('timer');}, 100);}
-					});
+						setInterval(function(){updateJob('timer');}, 100);
+					}
+				});
+			}
 		});
 	});
 
