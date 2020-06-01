@@ -365,7 +365,7 @@ function handleClient(data,miner){
 				jobshares=0;
 				mainWindow.webContents.send('blocks', blockstxt);
 				totalEffort+=jobshares/current_target;
-				mainWindow.webContents.send('data_averageeffort',(totalEffort/blocks*100).toFixed(2)+'%');
+				mainWindow.webContents.send('get-reply', ['data_averageeffort',(totalEffort/blocks*100).toFixed(2)+'%']);
 			});
 		}
 		
