@@ -364,7 +364,7 @@ function handleClient(data,miner){
 				mainWindow.webContents.send('get-reply', ['data_blocks',blocks]);
 				lastBlockFoundTime  = Date.now() - lastBlockFoundTime;
 				var elaspsedTime = new Date(lastBlockFoundTime);
-				blockstxt+=Date(Date.now()).substr(4, 20)+'&emsp;&emsp;Block '+(current_height-1)+' found by '+miner.login+' with '+((jobshares/current_target*100).toFixed(2))+'% effort ('+elaspsedTime.toISOString().substr(11, 8)+'s';
+				blockstxt+=Date(Date.now()).substr(4, 20)+'&emsp;&emsp;Block '+current_height+' found by '+miner.login+' with '+((jobshares/current_target*100).toFixed(2))+'% effort ('+elaspsedTime.toISOString().substr(11, 8)+'s';
 				if (blocks > 1) {
 					blockstxt+=' since last block)<br/>';
 				}
