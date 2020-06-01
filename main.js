@@ -362,9 +362,9 @@ function handleClient(data,miner){
 				blocks++;
 				mainWindow.webContents.send('get-reply', ['data_blocks',blocks]);
 				blockstxt+=(current_height-1)+' '+((jobshares/current_target*100).toFixed(2))+'%<br/>';
+				totalEffort+=jobshares/current_target;
 				jobshares=0;
 				mainWindow.webContents.send('blocks', blockstxt);
-				totalEffort+=jobshares/current_target;
 				mainWindow.webContents.send('get-reply', ['data_averageeffort',(totalEffort/blocks*100).toFixed(2)+'%']);
 			});
 		}
