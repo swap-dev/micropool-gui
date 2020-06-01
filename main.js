@@ -356,6 +356,8 @@ function handleClient(data,miner){
 			}
 			block.writeUInt32LE(request.params.nonce,47);
 			Buffer.from(miner.jobnonce, 'hex').copy(block,39,0,8);
+			
+			var block_found_height = current_height;
 
 			rpc('submitblock', [block.toString('hex')], function(error, result){
 				logger.info('BLOCK ('+miner.login+')');
@@ -364,7 +366,7 @@ function handleClient(data,miner){
 				mainWindow.webContents.send('get-reply', ['data_blocks',blocks]);
 				lastBlockFoundTime  = Date.now() - lastBlockFoundTime;
 				var elaspsedTime = new Date(lastBlockFoundTime);
-				blockstxt+=Date(Date.now()).substr(4, 20)+'&emsp;&emsp;Block '+current_height+' found by '+miner.login+' with '+((jobshares/current_target*100).toFixed(2))+'% effort ('+elaspsedTime.toISOString().substr(11, 8)+'s';
+				blockstxt+=Date(Date.now()).substr(4, 20)+'&emsp;&emsp;Block '+block_found_height+' found by '+miner.login+':'+miner.pass+' with '+((jobshares/current_target*100).toFixed(2))+'% effort ('+elaspsedTime.toISOString().substr(11, 8)+'s';
 				if (blocks > 1) {
 					blockstxt+=' since last block)<br/>';
 				}
