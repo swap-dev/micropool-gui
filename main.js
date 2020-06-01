@@ -114,6 +114,7 @@ var jobcounter        = 0;
 var blockstxt         = "";
 var jobshares         = 0;
 var totalEffort       = 0;
+var lastBlockFoundTime  = 0;
 
 function resetData()
 {
@@ -361,9 +362,18 @@ function handleClient(data,miner){
 				updateJob('found block');
 				blocks++;
 				mainWindow.webContents.send('get-reply', ['data_blocks',blocks]);
-				blockstxt+=(current_height-1)+' '+((jobshares/current_target*100).toFixed(2))+'%<br/>';
+				lastBlockFoundTime  = Date.now() - lastBlockFoundTime;
+				var elaspsedTime = new Date(lastBlockFoundTime);
+				blockstxt+='Block '+(current_height-1)+' found by '+miner.login+' with '+((jobshares/current_target*100).toFixed(2))+'% effort ('+elaspsedTime.toISOString().substr(11, 8)+'s';
+				if (blocks > 1) {
+					blockstxt+=' since last block)<br/>';
+				}
+				else {
+					blockstxt+=' since micropool started)<br/>';
+				}
 				totalEffort+=jobshares/current_target;
 				jobshares=0;
+				lastBlockFoundTime  = Date.now();
 				mainWindow.webContents.send('blocks', blockstxt);
 				mainWindow.webContents.send('get-reply', ['data_averageeffort',(totalEffort/blocks*100).toFixed(2)+'%']);
 			});
@@ -475,6 +485,7 @@ function createWindow () {
 			updateJob('init',function(){
 				server.listen(global.poolconfig.poolport,'0.0.0.0');
 				logger.info("start swap micropool, port "+global.poolconfig.poolport);
+				lastBlockFoundTime  = Date.now();
 			});
 			setInterval(function(){updateJob('timer');}, 100);
 		}
@@ -503,6 +514,7 @@ function createWindow () {
 						updateJob('init',function(){
 							server.listen(global.poolconfig.poolport,'0.0.0.0');
 							logger.info("start swap micropool, port "+global.poolconfig.poolport);
+							lastBlockFoundTime  = Date.now();
 						});
 						setInterval(function(){updateJob('timer');}, 100);
 					}
