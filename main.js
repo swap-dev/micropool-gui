@@ -2,6 +2,7 @@
 const {app, BrowserWindow, ipcMain} = require('electron')
 const storage = require('electron-json-storage');
 const contextMenu = require('electron-context-menu');
+const fs = require('fs') 
 
 var c29s = require('./c29s_nowasm.js');
 var verify_c29s = c29s.cwrap('c29s_verify', 'number', ['array','number','array']);
@@ -30,7 +31,12 @@ function seq(){
 };
 
 function Log() {}
-Log.prototype.log = function (level,message) {mainWindow.webContents.send('log', [level,message]);}
+Log.prototype.log = function (level,message) {
+    mainWindow.webContents.send('log', [level,message]);
+    fs.appendFile('log.txt', Date(Date.now()).substr(4, 20)+' ['+level+'] '+message+'\n', (err) => { 
+        if (err) throw err; 
+    }
+)}
 Log.prototype.info  = function (message) {this.log('info',message);}
 Log.prototype.error = function (message) {this.log('error',message);}
 Log.prototype.debug = function (message) {/*this.log('debug',message);*/}
