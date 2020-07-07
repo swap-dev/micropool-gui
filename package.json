@@ -10,7 +10,7 @@
   "author": "sebseb7",
   "license": "0bsd",
   "devDependencies": {
-    "electron": "^4.0.6"
+    "electron": "^9.1.0"
   },
   "dependencies": {
     "electron-json-storage": "^4.1.6",
