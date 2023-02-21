@@ -1,6 +1,6 @@
 {
   "name": "swap-micro-pool",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "A minimal Swap Pool",
   "main": "main.js",
   "scripts": {
