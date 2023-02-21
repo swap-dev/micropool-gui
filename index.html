@@ -105,7 +105,7 @@
 								<col style="width: *">
 							</colgroup>
 							<tr class="no-top-line">
-								<td><i class="fas fa-bolt fa-lg fa-fw"></i>&ensp;Ctrl-Port</td>
+								<td><i class="fas fa-bolt fa-lg fa-fw"></i>&ensp;Ctrl-Port&ensp;<input id="onlyctrl" title="Use only Control port" onchange="updateData()" type="checkbox"/></td>
 								<td class="right-border1">
 									<input id="ctrlport" value="" onchange="updateData()" style="width:calc(100% + 4px)" type="text"/>
 								</td>
@@ -438,7 +438,14 @@
 			</div>
 
 			<div id="tabworker" class="tabcontent">
-				<div id="workers">
+				<div id="workerstitle">
+					<h3>
+						<font color ="#a3acde">
+					Login-Miner-Pass-Diff-Shares-Hashrate-Blocks-CurrentEffort-AverageEffort<br>
+						</font>
+					</h3>
+				</div>
+				<div id="workers">					
 				</div>
 			</div>
 
@@ -592,6 +599,7 @@
 				ipcRenderer.send('set', ['ctrlport',document.getElementById('ctrlport').value]);
 				ipcRenderer.send('set', ['daemonhost',document.getElementById('daemonhost').value]);
 				ipcRenderer.send('set', ['mining_address',document.getElementById('mining_address').value]);
+				ipcRenderer.send('set', ['onlyctrl',document.getElementById('onlyctrl').checked]);					
 			}
 			const { ipcRenderer } = require('electron')
 			ipcRenderer.send('get', 'daemonport');
@@ -599,9 +607,10 @@
 			ipcRenderer.send('get', 'ctrlport');
 			ipcRenderer.send('get', 'daemonhost');
 			ipcRenderer.send('get', 'mining_address');
+			ipcRenderer.send('get', 'onlyctrl');						
 			
 			ipcRenderer.on('get-reply', (event, arg) => {
-				document.getElementById(arg[0]).value=arg[1];
+				document.getElementById(arg[0]).value=arg[1];								
 			})
 			ipcRenderer.on('workers', (event, arg) => {
 				document.getElementById('workers').innerHTML=arg;
@@ -609,6 +618,9 @@
 			ipcRenderer.on('blocks', (event, arg) => {
 				document.getElementById('blocks').innerHTML=arg;
 			})
+			ipcRenderer.on('onlyctrl', (event, arg) => {
+				document.getElementById('onlyctrl').checked=arg;
+			})			
 			ipcRenderer.on('log', (event, msg) => {
 				var d = new Date();
 				loglines.unshift(Date(Date.now()).substr(4, 20)+' <span>['+msg[0]+']</span> '+msg[1]);
@@ -634,7 +646,7 @@
 			}
 			function resetData() {
 				ipcRenderer.send('run', ['resetData']);
-			}
+			}			
 		</script>
 	</body>
 </html>
