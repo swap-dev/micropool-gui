@@ -16,7 +16,8 @@ global.poolconfig = {
 	ctrlport:14651,// use with https://github.com/swap-dev/on-block-notify.git
 	daemonport:0,
 	daemonhost:'',
-	mining_address:''
+	mining_address:'',
+	onlyctrl:'false'
 };
 
 const http = require('http');
@@ -124,14 +125,23 @@ var lastBlockFoundTime  = 0;
 
 function resetData()
 {
-	shares=0;
+	shares=0;	
 	blocks=0;
 	jobshares=0;
 	totalEffort=0;
+	for (var minerId in connectedMiners){
+		var miner2 = connectedMiners[minerId];
+		miner2.blockshares=0;
+		miner2.minerblocks=0;
+		miner2.effort=0;
+		miner2.blockeffort=0;
+	}
+	blockstxt='';
 	mainWindow.webContents.send('get-reply', ['data_shares', 0]);
 	mainWindow.webContents.send('get-reply', ['data_blocks', 0]);
 	mainWindow.webContents.send('get-reply', ['data_currenteffort', "0.00%"]);
 	mainWindow.webContents.send('get-reply', ['data_averageeffort', "0.00%"]);
+	mainWindow.webContents.send('blocks', blockstxt);
 }
 
 function nonceCheck(miner,nonce) {
@@ -150,14 +160,14 @@ function hashrate(miner) {
 	var hr = miner.shares*32/((Date.now()/1000|0)-miner.begin);
 
 	miner.gps = hr;
-	
+	miner.blockeffort = miner.blockshares/current_target*100;
 	var total = 0;
 	var workertxt='';
 
 	for (var minerId in connectedMiners){
 		var miner2 = connectedMiners[minerId];
 		total+=miner2.gps;
-		workertxt+=miner2.login+' '+miner2.agent+' '+miner2.pass+' '+miner2.difficulty+' '+miner2.shares+' '+miner2.gps.toFixed(2)+'<br/>';
+		workertxt+=miner2.login+' '+miner2.agent+' '+miner2.pass+' '+miner2.difficulty+' '+miner2.shares+' '+miner2.gps.toFixed(2)+' '+miner2.minerblocks+' '+miner2.blockeffort.toFixed(2)+' '+(miner2.effort/miner2.minerblocks).toFixed(2)+'<br/>';
 	}
 	mainWindow.webContents.send('workers', workertxt);
 	mainWindow.webContents.send('get-reply', ['data_gps',total.toFixed(2)+" Gps"]);
@@ -219,7 +229,11 @@ function Miner(id,socket){
 	this.jobnonce = '';
 	this.oldnonce = '';
 	this.begin = Date.now()/1000|0;
+	this.blockshares = 0;
 	this.shares = 0;
+	this.effort =0;
+	this.minerblocks =0;
+	this.blockeffort =0;
 	this.gps = 0;
 	this.difficulty = 1;
 	this.id = id;
@@ -239,7 +253,7 @@ function Miner(id,socket){
 	});
 	
 	socket.on('close', function(had_error) {
-		logger.info('miner connction dropped '+client.login);
+		logger.info('miner connection dropped '+client.login);
 		mainWindow.webContents.send('get-reply', ['data_conn',--conn]);
 		delete connectedMiners[client.id];
 		var total=0;
@@ -247,7 +261,7 @@ function Miner(id,socket){
 		for (var minerId in connectedMiners){
 			var miner2 = connectedMiners[minerId];
 			total+=miner2.gps;
-			workertxt+=miner2.login+' '+miner2.agent+' '+miner2.pass+' '+miner2.difficulty+' '+miner2.shares+' '+miner2.gps.toFixed(2)+'<br/>';
+			workertxt+=miner2.login+' '+miner2.agent+' '+miner2.pass+' '+miner2.difficulty+' '+miner2.shares+' '+miner2.gps.toFixed(2)+' '+miner2.minerblocks+' '+miner2.blockeffort.toFixed(2)+' '+(miner2.effort/miner2.minerblocks).toFixed(2)+'<br/>';
 		}
 		mainWindow.webContents.send('workers', workertxt);
 		mainWindow.webContents.send('get-reply', ['data_gps',total.toFixed(2)+" Gps"]);
@@ -307,7 +321,7 @@ function handleClient(data,miner){
 		var workertxt='';
 		for (var minerId in connectedMiners){
 			var miner2 = connectedMiners[minerId];
-			workertxt+=miner2.login+' '+miner2.agent+' '+miner2.pass+' '+miner2.difficulty+' '+miner2.shares+' '+miner2.gps.toFixed(2)+'<br/>';
+			workertxt+=miner2.login+' '+miner2.agent+' '+miner2.pass+' '+miner2.difficulty+' '+miner2.shares+' '+miner2.gps.toFixed(2)+' '+miner2.minerblocks+' '+miner2.blockeffort.toFixed(2)+' '+(miner2.effort/miner2.minerblocks).toFixed(2)+'<br/>';
 		}
 		mainWindow.webContents.send('workers', workertxt);
 		return miner.respose('ok',null,request);
@@ -366,11 +380,12 @@ function handleClient(data,miner){
 			var block_found_height = current_height;
 
 			rpc('submitblock', [block.toString('hex')], function(error, result){
-				logger.info('BLOCK ('+miner.login+')');
-				updateJob('found block');
+				updateJob('foundblock');								
+				logger.info('BLOCK FOUND by ('+miner.login+' '+miner.pass+')');				
 				blocks++;
+				miner.minerblocks++;
 				mainWindow.webContents.send('get-reply', ['data_blocks',blocks]);
-				lastBlockFoundTime  = Date.now() - lastBlockFoundTime;
+				lastBlockFoundTime  = Date.now() - lastBlockFoundTime;				
 				var elaspsedTime = new Date(lastBlockFoundTime);
 				blockstxt+=Date(Date.now()).substr(4, 20)+'&emsp;&emsp;Block '+block_found_height+' found by '+miner.pass+' with '+((jobshares/current_target*100).toFixed(2))+'% effort ('+elaspsedTime.toISOString().substr(11, 8)+'s';
 				if (blocks > 1) {
@@ -379,8 +394,11 @@ function handleClient(data,miner){
 				else {
 					blockstxt+=' since micropool started)<br/>';
 				}
+				miner.effort+=miner.blockeffort;
+				miner.blockeffort=0;
 				totalEffort+=jobshares/current_target;
 				jobshares=0;
+				miner.blockshares = 0;
 				lastBlockFoundTime  = Date.now();
 				mainWindow.webContents.send('blocks', blockstxt);
 				mainWindow.webContents.send('get-reply', ['data_averageeffort',(totalEffort/blocks*100).toFixed(2)+'%']);
@@ -390,6 +408,7 @@ function handleClient(data,miner){
 		if(check_diff(miner.difficulty,cycle)) {
 		
 			shares+=parseFloat(miner.difficulty);
+			miner.blockshares+=parseFloat(miner.difficulty);
 			jobshares+=parseFloat(miner.difficulty);
 			mainWindow.webContents.send('get-reply', ['data_shares',shares]);
 			mainWindow.webContents.send('get-reply', ['data_currenteffort',(jobshares/current_target*100).toFixed(2)+'%']);
@@ -429,6 +448,8 @@ function handleClient(data,miner){
 	else{
 
 		logger.info("unkonwn method: "+request.method);
+		mainWindow.webContents.send('get-reply', ['data_conn',--conn]);
+		delete connectedMiners[miner.id];
 	}
 
 }
@@ -458,7 +479,7 @@ let mainWindow;
 function createWindow () {
 	// Create the browser window.
 	mainWindow = new BrowserWindow({
-		title: 'Swap Micropool',
+		title: 'Swap Micropool 1.5.5',
 		width: 1000,
 		height: 800,
 		minWidth: 800,
@@ -482,7 +503,7 @@ function createWindow () {
 		if(arg[0] === "daemonhost") global.poolconfig.daemonhost=arg[1];
 		if(arg[0] === "poolport") global.poolconfig.poolport=arg[1];
 		if(arg[0] === "ctrlport") global.poolconfig.ctrlport=arg[1];
-
+		if(arg[0] === "onlyctrl") global.poolconfig.onlyctrl=arg[1];
 		storage.set(arg[0],arg[1]);
 		
 		//Alternative init since this ipcMain.on('set',...) codeblock runs after ipcMain.on('get',...) on a clean startup.
@@ -495,7 +516,8 @@ function createWindow () {
 				logger.info("start swap micropool, port "+global.poolconfig.poolport);
 				lastBlockFoundTime  = Date.now();
 			});
-			setInterval(function(){updateJob('timer');}, 100);
+			
+			if (global.poolconfig.onlyctrl==false) setInterval(function(){updateJob('timer');}, 100);
 		}
 	});
 
@@ -508,15 +530,16 @@ function createWindow () {
 			if(!error && haskey)
 			{
 				storage.get(arg0,function(error,object) {
+					if (arg0==="onlyctrl") sender.send('onlyctrl',global.poolconfig.onlyctrl=object);
 					if(!error) sender.send('get-reply', [arg0,object]);
 					if(arg0 === "mining_address") global.poolconfig.mining_address=object;
 					if(arg0 === "daemonport") global.poolconfig.daemonport=object;
 					if(arg0 === "daemonhost") global.poolconfig.daemonhost=object;
 					if(arg0 === "poolport") global.poolconfig.poolport=object;
-					if(arg0 === "ctrlport") global.poolconfig.ctrlport=object;
+					if(arg0 === "ctrlport") global.poolconfig.ctrlport=object;					
 					count++;
 					
-					if(count == 5 && !started) 
+					if(count == 6 && !started) 
 					{
 						started=1;
 						updateJob('init',function(){
@@ -524,7 +547,7 @@ function createWindow () {
 							logger.info("start swap micropool, port "+global.poolconfig.poolport);
 							lastBlockFoundTime  = Date.now();
 						});
-						setInterval(function(){updateJob('timer');}, 100);
+						if (global.poolconfig.onlyctrl==false) setInterval(function(){updateJob('timer');}, 100);
 					}
 				});
 			}

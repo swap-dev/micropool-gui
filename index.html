@@ -42,7 +42,7 @@
 						<table class="table-input-top" cellspacing="0" cellpadding="0">
 							<colgroup>
 								<col style="width: 82px">
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-wallet fa-lg fa-fw"></i>&ensp;Wallet</td>
@@ -58,7 +58,7 @@
 						<table class="table-input-top" cellspacing="0" cellpadding="0">
 							<colgroup>
 								<col style="width: 135px">
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr class="no-top-line">
 								<td><i class="fas fa-server fa-lg fa-fw"></i>&ensp;Daemon-Host</td>
@@ -72,7 +72,7 @@
 						<table class="table-input-top table-input-top2" cellspacing="0" cellpadding="0">
 							<colgroup>
 								<col style="width: 132px">
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr class="no-top-line">
 								<td><i class="fas fa-phone-volume fa-lg fa-fw"></i>&ensp;Daemon-Port</td>
@@ -86,7 +86,7 @@
 						<table class="table-input-top table-input-top2" cellspacing="0" cellpadding="0">
 							<colgroup>
 								<col style="width: 105px">
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr class="no-top-line">
 								<td><i class="fas fa-phone-volume fa-lg fa-fw"></i>&ensp;Pool-Port</td>
@@ -102,10 +102,10 @@
 						<table class="table-input-top" cellspacing="0" cellpadding="0">
 							<colgroup>
 								<col style="width: 135px">
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr class="no-top-line">
-								<td><i class="fas fa-bolt fa-lg fa-fw"></i>&ensp;Ctrl-Port</td>
+								<td><i class="fas fa-bolt fa-lg fa-fw"></i>&ensp;Ctrl-Port&ensp;<input id="onlyctrl" title="Use only Control port" onchange="updateData()" type="checkbox"/></td>
 								<td class="right-border1">
 									<input id="ctrlport" value="" onchange="updateData()" style="width:calc(100% + 4px)" type="text"/>
 								</td>
@@ -115,7 +115,7 @@
 					<td>
 						<table class="table-input-top table-input-top2" cellspacing="0" cellpadding="0">								
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr class="no-top-line">
 								<td class="reset">
@@ -128,7 +128,7 @@
 						<table class="table-input-top table-input-top2" cellspacing="0" cellpadding="0">
 							<colgroup>
 								<col style="width: 110px">
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr class="no-top-line">
 								<td>
@@ -151,7 +151,7 @@
 					<td>
 						<table class="table-header table-header-top" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-tachometer-alt-fast fa-lg fa-fw"></i>&ensp;Graph Rate</td>
@@ -161,7 +161,7 @@
 					<td>
 						<table class="table-header table-header2 table-header-top" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-route fa-lg fa-fw"></i>&ensp;Solutions</td>
@@ -171,7 +171,7 @@
 					<td>
 						<table class="table-header table-header2 table-header-top" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-cubes fa-lg fa-fw"></i>&ensp;Blocks Found</td>
@@ -181,7 +181,7 @@
 					<td>
 						<table class="table-header table-header2 table-header-top" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-history fa-lg fa-fw"></i>&ensp;Blocks Found Every</td>
@@ -193,7 +193,7 @@
 					<td>
 						<table style="margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td class="data">
@@ -205,7 +205,7 @@
 					<td>
 						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td class="data">
@@ -217,7 +217,7 @@
 					<td>
 						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td class="data">
@@ -229,7 +229,7 @@
 					<td>
 						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td class="data">
@@ -243,7 +243,7 @@
 					<td>
 						<table class="table-header" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-tachometer-alt-fast fa-lg fa-fw"></i>&ensp;Network Graph Rate</td>
@@ -253,7 +253,7 @@
 					<td>
 						<table class="table-header table-header2" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-unlock fa-lg fa-fw"></i>&ensp;Network Difficulty</td>
@@ -263,7 +263,7 @@
 					<td>
 						<table class="table-header table-header2" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-bars fa-lg fa-fw"></i>&ensp;Blockchain Height</td>
@@ -273,7 +273,7 @@
 					<td>
 						<table class="table-header table-header2" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-chart-line fa-lg fa-fw"></i>&ensp;Current Effort</td>
@@ -285,7 +285,7 @@
 					<td>
 						<table style="padding-left:0px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td class="data">
@@ -297,7 +297,7 @@
 					<td>
 						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td class="data">
@@ -309,7 +309,7 @@
 					<td>
 						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td class="data">
@@ -321,7 +321,7 @@
 					<td>
 						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td class="data">
@@ -335,7 +335,7 @@
 					<td>
 						<table class="table-header" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-users fa-lg fa-fw"></i>&ensp;Workers</td>
@@ -345,7 +345,7 @@
 					<td>
 						<table class="table-header table-header2" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-coins fa-lg fa-fw"></i>&ensp;Est. Revenue Per Day</td>
@@ -355,7 +355,7 @@
 					<td>
 						<table class="table-header table-header2" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-coins fa-lg fa-fw"></i>&ensp;Current Block Rewards</td>
@@ -365,7 +365,7 @@
 					<td>
 						<table class="table-header table-header2" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td><i class="fas fa-chart-line fa-lg fa-fw"></i>&ensp;Average Effort</td>
@@ -377,7 +377,7 @@
 					<td>
 						<table style="padding-left:0px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td class="data">
@@ -389,7 +389,7 @@
 					<td>
 						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td class="data">
@@ -401,7 +401,7 @@
 					<td>
 						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td class="data">
@@ -413,7 +413,7 @@
 					<td>
 						<table style="padding-left:20px;margin-top:0px;width:100%;table-layout: fixed;border:0;" cellspacing="0" cellpadding="0">
 							<colgroup>
-								<col style="width: *">
+								<col>
 							</colgroup>
 							<tr>
 								<td class="data">
@@ -438,7 +438,14 @@
 			</div>
 
 			<div id="tabworker" class="tabcontent">
-				<div id="workers">
+				<div id="workerstitle">
+					<h3>
+						<font color ="#a3acde">
+					Login-Miner-Pass-Diff-Shares-Hashrate-Blocks-CurrentEffort-AverageEffort<br>
+						</font>
+					</h3>
+				</div>
+				<div id="workers">					
 				</div>
 			</div>
 
@@ -592,6 +599,7 @@
 				ipcRenderer.send('set', ['ctrlport',document.getElementById('ctrlport').value]);
 				ipcRenderer.send('set', ['daemonhost',document.getElementById('daemonhost').value]);
 				ipcRenderer.send('set', ['mining_address',document.getElementById('mining_address').value]);
+				ipcRenderer.send('set', ['onlyctrl',document.getElementById('onlyctrl').checked]);					
 			}
 			const { ipcRenderer } = require('electron')
 			ipcRenderer.send('get', 'daemonport');
@@ -599,9 +607,10 @@
 			ipcRenderer.send('get', 'ctrlport');
 			ipcRenderer.send('get', 'daemonhost');
 			ipcRenderer.send('get', 'mining_address');
+			ipcRenderer.send('get', 'onlyctrl');						
 			
 			ipcRenderer.on('get-reply', (event, arg) => {
-				document.getElementById(arg[0]).value=arg[1];
+				document.getElementById(arg[0]).value=arg[1];								
 			})
 			ipcRenderer.on('workers', (event, arg) => {
 				document.getElementById('workers').innerHTML=arg;
@@ -609,6 +618,9 @@
 			ipcRenderer.on('blocks', (event, arg) => {
 				document.getElementById('blocks').innerHTML=arg;
 			})
+			ipcRenderer.on('onlyctrl', (event, arg) => {
+				document.getElementById('onlyctrl').checked=arg;
+			})			
 			ipcRenderer.on('log', (event, msg) => {
 				var d = new Date();
 				loglines.unshift(Date(Date.now()).substr(4, 20)+' <span>['+msg[0]+']</span> '+msg[1]);
@@ -634,7 +646,7 @@
 			}
 			function resetData() {
 				ipcRenderer.send('run', ['resetData']);
-			}
+			}			
 		</script>
 	</body>
 </html>
